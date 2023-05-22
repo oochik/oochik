@@ -1,0 +1,42 @@
+body {
+  background-color: #19241b;
+}
+
+.btn-gradient-up {
+  height: 100px;
+  width: 100px;
+  background: linear-gradient(
+        180deg,
+        /* rgba(159, 200, 59, 0) 0%, */ #19241b,
+        /* rgba(159, 200, 59, 0) 50% */ #19241b
+      )
+      padding-box,
+    /* linear-gradient(to bottom, #9fc83b, rgba(255, 255, 255, 0))  */
+      linear-gradient(
+        90deg,
+        rgba(159, 200, 59, 1) 0%,
+        rgba(159, 200, 59, 0) 100%
+      )
+      border-box;
+  border-radius: 50%;
+  border: 15px solid transparent;
+}
+.btn-gradient-down {
+  height: 100px;
+  width: 100px;
+  background: linear-gradient(
+        180deg,
+        /* rgba(159, 200, 59, 0) 0%, */ #19241b,
+        /* rgba(159, 200, 59, 0) 50% */ #19241b
+      )
+      padding-box,
+    /* linear-gradient(to bottom, #9fc83b, rgba(255, 255, 255, 0))  */
+      linear-gradient(
+        90deg,
+        rgba(159, 200, 59, 1) 0%,
+        rgba(159, 200, 59, 0) 100%
+      )
+      border-box;
+  border-radius: 50%;
+  border: 15px solid transparent;
+}
