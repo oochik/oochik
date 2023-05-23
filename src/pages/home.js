@@ -1,37 +1,20 @@
 import styled from "@emotion/styled";
-
-const ContainerRadius = styled.div`
-height: 50px;
-overflow: hidden ;
+import bg from '../assets/backgroundCircles.svg'
+import Naver from "../comps/naver";
+import Header from "../comps/header";
+import Plan from "../comps/plan";
+const HomeContainer = styled.div`
+// height:100vh;
+border:1px solid purple; 
 `
 
 const Home = () => {
     return (
-        <div className="d-flex justify-content-center text-center">
-            <ContainerRadius style={{ transform: 'translateX(7px)' }} className="d-flex justify-content-center text-center">
-                <div className="btn-gradient-up"></div>
-            </ContainerRadius>
-
-            <ContainerRadius style={{ transform: 'translate(-8px,50px)' }} className="d-flex justify-content-center text-center align-items-end">
-                <div className="btn-gradient-down"></div>
-            </ContainerRadius>
-
-            <ContainerRadius style={{ transform: 'translateX(7px)' }} className="d-flex justify-content-center text-center">
-                <div className="btn-gradient-up"></div>
-            </ContainerRadius>
-
-            <ContainerRadius style={{ transform: 'translate(-8px,50px)' }} className="d-flex justify-content-center text-center align-items-end">
-                <div className="btn-gradient-down"></div>
-            </ContainerRadius>
-
-            <ContainerRadius style={{ transform: 'translateX(7px)' }} className="d-flex justify-content-center text-center">
-                <div className="btn-gradient-up"></div>
-            </ContainerRadius>
-
-            <ContainerRadius style={{ transform: 'translate(-8px,50px)' }} className="d-flex justify-content-center text-center align-items-end">
-                <div className="btn-gradient-down"></div>
-            </ContainerRadius>
-        </div>
+        <HomeContainer className="d-flex flex-column justify-content-center align-items-center text-center">
+            <Naver />
+            <Header/>
+            <Plan/>
+        </HomeContainer>
     );
 }
 

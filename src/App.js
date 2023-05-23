@@ -10,6 +10,9 @@ import { ThemeProvider } from '@emotion/react';
 import Home from './pages/home';
 import NotFound from './pages/404';
 import { createTheme } from '@mui/material';
+import Navbar from './comps/navbar';
+import styled from '@emotion/styled';
+import bg from './assets/backgroundCircles.svg'
 
 
 const theme = createTheme({
@@ -19,6 +22,13 @@ const theme = createTheme({
     },
   },
 });
+const HomeContainer = styled.div`
+background-image: url(${bg});
+background-size:cover;
+background-repeat:repeat-y;
+// background-position:top;
+// height:100vh;
+`
 
 
 function App() {
@@ -27,10 +37,13 @@ function App() {
       <ScrollToTop>
         <ThemeProvider theme={theme}>
           <>
-            <Routes>
-              <Route exact path="/" element={<Home />} />
-              <Route path='*' element={<NotFound />} />
-            </Routes>
+            <HomeContainer>
+              <Navbar />
+              <Routes>
+                <Route exact path="/" element={<Home />} />
+                <Route path='*' element={<NotFound />} />
+              </Routes>
+            </HomeContainer>
           </>
         </ThemeProvider>
       </ScrollToTop>
