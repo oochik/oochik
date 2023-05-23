@@ -32,12 +32,23 @@ const Title = styled.h5`
 font-weight:700;
 color:white;
 font-size:26px;
+text-transform:capitalize;
 `
 const GradientTitle = styled.h5`
 font-size: 40px;
-background: -webkit-linear-gradient(#ffffff, #6B6F6C);
+background: -webkit-linear-gradient(#ffffff 0%, #6B6F6C 70%);
+background: linear-gradient(to right, #ffffff 0%, #6B6F6C 70%);
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
+text-transform:capitalize;
+font-size:45px;
+@media screen and (max-width: 990px) {
+    font-size:32px;
+};
+@media screen and (max-width: 575px) {
+    font-size:30px;
+}    
+
 `
 const Par = styled.p`
 font-weight:400;
