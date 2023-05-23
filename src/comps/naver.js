@@ -4,7 +4,7 @@ const Bar = styled.div`
 height: 400px;
 width:80px;
 right:0;
-top:40%;
+top:30%;
 position:fixed;
 display:flex;
 flex-direction:column;

@@ -7,7 +7,7 @@ const RedButton = styled.button`
     mix-blend-mode: normal;
     box-shadow: inset 0px 0px 18px rgba(0, 0, 0, 0.5);
     border-radius: 48px;
-    // width: 561px;
+    width: 100%;
     height: 65px;
     color:white;
     font-weight:600;

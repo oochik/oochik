@@ -13,6 +13,7 @@ import { createTheme } from '@mui/material';
 import Navbar from './comps/navbar';
 import styled from '@emotion/styled';
 import bg from './assets/backgroundCircles.svg'
+import MintPage from './pages/mintPage';
 
 
 const theme = createTheme({
@@ -23,6 +24,7 @@ const theme = createTheme({
   },
 });
 const HomeContainer = styled.div`
+background-color: #19241b;
 background-image: url(${bg});
 background-size:cover;
 background-repeat:repeat-y;
@@ -41,6 +43,7 @@ function App() {
               <Navbar />
               <Routes>
                 <Route exact path="/" element={<Home />} />
+                <Route exact path="/mint" element={<MintPage />} />
                 <Route path='*' element={<NotFound />} />
               </Routes>
             </HomeContainer>

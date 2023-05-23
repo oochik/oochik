@@ -57,7 +57,7 @@ const Navbar = () => {
             {/* tablet navbar */}
             <NavbarTablet className="mb-5 d-none d-sm-flex d-lg-none">
                 <div className="d-flex align-items-center col-6">
-                    <Link className="me-5" style={{ fontSize: '16px', color: '#d1d1d1', textDecoration: "none" }}>
+                    <Link to={'/'} className="me-5" style={{ fontSize: '16px', color: '#d1d1d1', textDecoration: "none" }}>
                         Home
                     </Link>
                     <Link style={{ fontSize: '16px', color: '#d1d1d1', textDecoration: "none" }}>

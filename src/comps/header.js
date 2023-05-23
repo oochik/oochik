@@ -2,13 +2,15 @@ import styled from "@emotion/styled";
 import giff from '../assets/0.gif'
 import banner from '../assets/oochik-banner.svg'
 import GoToButton from "./goToButton";
+import { Link } from "react-router-dom";
 
 
 const HeaderContainer = styled.div`
-height:100vh;
+// height:100vh;
 // width:100%;
 padding:30px;
-border:1px solid white;
+// border:1px solid white;
+margin-bottom:100px;
 `
 const OoChikGif = styled.div`
 background-image: url(${banner});
@@ -17,7 +19,6 @@ background-repeat:no-repeat;
 background-position:center;
 height:500px;
 width:412px;
-border:yellow solid 1px;
 @media screen and (max-width: 990px) {
     height:340px;
     width:279px;
@@ -48,37 +49,37 @@ border-radius:50%;
 border-left:1px solid;
 border-top:1px solid;
 border-color:#9FC83B;
-width:80px;
-height:80px;
 position:absolute;
 `
 
 
 const Header = () => {
     return (
-        <HeaderContainer className="d-flex w-100 flex-column flex-sm-row-reverse">
-            <div style={{ border: "1px solid blue" }} className="col-12 col-sm-5 col-lg-6 d-flex justify-content-center align-items-center">
+        <HeaderContainer className="d-flex flex-column flex-sm-row-reverse justify-content-between">
+            <div style={{}} className="col-12 col-sm-5 col-lg-5 d-flex justify-content-center align-items-center">
                 <OoChikGif />
             </div>
-            <div style={{ border: "1px solid red", }} className="col-12 col-sm-7 col-lg-6 d-flex flex-column text-start">
-                <div style={{ border: "1px solid blue", position: "relative", padding: '60px 0 0 60px' }}>
-                    <HalfCircle style={{ opacity: 0.2, top: 0, left: 0 }} />
-                    <HalfCircle style={{ opacity: 0.6, top: '15px', left: '15px' }} />
-                    <HalfCircle style={{ top: '30px', left: '30px' }} />
+            <div style={{}} className="col-12 col-sm-7 col-lg-5 d-flex flex-column text-start">
+                <div style={{ position: "relative", padding: '60px 0 0 60px' }}>
+                    <HalfCircle style={{ opacity: 0.2, top: 0, left: 0, width: '80px', height: '80px' }} />
+                    <HalfCircle style={{ opacity: 0.6, top: '15px', left: '15px', width: '80px', height: '80px' }} />
+                    <HalfCircle style={{ top: '30px', left: '30px', width: '80px', height: '80px' }} />
                     <Title className="mb-2">
                         Ai robotics is on next level of tech
                     </Title>
                     <Par>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius</Par>
                 </div>
-                <div className="mt-5 mb-5" style={{ border: "1px solid blue", position: "relative", padding: '60px 0 0 60px' }}>
-                    <HalfCircle style={{ opacity: 0.2, top: 0, left: 0 }} />
-                    <HalfCircle style={{ opacity: 0.6, top: '15px', left: '15px' }} />
-                    <HalfCircle style={{ top: '30px', left: '30px' }} />
+                <div className="mt-3 mt-sm-5 mb-5" style={{ position: "relative", padding: '60px 0 20px 60px' }}>
+                    <HalfCircle style={{ opacity: 0.2, top: 0, left: 0, width: '100px', height: '100px' }} />
+                    <HalfCircle style={{ opacity: 0.6, top: '15px', left: '15px', width: '100px', height: '100px' }} />
+                    <HalfCircle style={{ top: '30px', left: '30px', width: '100px', height: '100px' }} />
                     <GradientTitle >
                         Ai robotics is on next level of tech
                     </GradientTitle>
                 </div>
-                <GoToButton />
+                <Link to={'/mint'} style={{ color: 'inherit', textDecoration: "none", borderRadius: "48px", }}>
+                    <GoToButton />
+                </Link>
             </div>
         </HeaderContainer>
     );
