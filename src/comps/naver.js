@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Instagram } from "iconsax-react";
 
 const Bar = styled.div`
 height: 400px;
@@ -19,13 +20,29 @@ border-color:#9FC83B;
 padding:30px;
 background-blend-mode: overlay;
 mix-blend-mode: screen;
+z-index:999;
 
 `
+const GradientTitle = styled.div`
+background: -webkit-linear-gradient(#9fc83b 0%, #008d31 70%);
+background: linear-gradient(to bottom, #9fc83b 0%, #008d31 70%);
+background: rgb(159,200,59);
+background: linear-gradient(177deg, rgba(159,200,59,1) 0%, rgba(0,141,49,1) 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+`
+
+
+
 
 
 const Naver = () => {
     return (<Bar className="d-none d-lg-flex">
-
+        <GradientTitle>
+            <Instagram size="40px" color="#9FC83B" style={{ color: 'linear-gradient(177deg, rgba(159,200,59,1) 0%, rgba(0,141,49,1) 100%)' }} />
+        </GradientTitle>
+        <Instagram size="40px" color="#9FC83B" />
+        <Instagram size="40px" color="#9FC83B" />
     </Bar>);
 }
 

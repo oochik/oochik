@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { ArrowForward, ArrowForwardIos } from "@mui/icons-material";
+import { ArrowRight2 } from "iconsax-react";
 import { Link } from "react-router-dom";
 
 const NavbarTablet = styled.div`
@@ -34,7 +35,7 @@ const Navbar = () => {
     return (
         <>
             {/* desktop navbar  */}
-            <div className="mb-5 d-none d-lg-flex align-items-center justify-content-between" style={{ height: "100px", margin: '0 40px' }}>
+            <div className="d-none d-lg-flex align-items-center justify-content-between" style={{ height: "100px", margin: '0 40px 8vh' }}>
                 <div className="d-flex align-items-center col-6">
                     <Link to={'/'} className="me-5" style={{ fontSize: '20px', color: '#d1d1d1', textDecoration: "none" }}>
                         Home
@@ -48,7 +49,7 @@ const Navbar = () => {
                         <div className="d-flex align-items-center">
                             Connect Wallet
                             <ArrowButton className="ms-2">
-                                <ArrowForwardIos fontSize="small" />
+                                <ArrowRight2 size="18px" />
                             </ArrowButton>
                         </div>
                     </Link>

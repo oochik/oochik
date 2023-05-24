@@ -10,7 +10,7 @@ const HeaderContainer = styled.div`
 // width:100%;
 padding:30px;
 // border:1px solid white;
-margin-bottom:100px;
+margin-bottom:30vh;
 `
 const OoChikGif = styled.div`
 background-image: url(${banner});
