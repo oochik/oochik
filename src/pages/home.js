@@ -18,6 +18,7 @@ const Home = () => {
             <Header />
             <Bio />
             <Plan />
+            <Particle />
         </HomeContainer>
     );
 }

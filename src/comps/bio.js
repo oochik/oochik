@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import Partice from "./particles";
+import Particle from "./particles";
 
 const Title = styled.h5`
 font-weight:700;
@@ -28,7 +28,7 @@ const Bio = () => {
                 <Title>Ai robotics is on next level of tech</Title>
                 <p style={{ color: "white" }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             </BioTextContainer>
-            <Partice />
+            <Particle />
         </>
     );
 }

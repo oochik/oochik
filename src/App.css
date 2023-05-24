@@ -20,6 +20,7 @@ body {
       border-box;
   border-radius: 50%;
   border: 15px solid transparent;
+  filter: blur(1px);
 }
 .btn-gradient-down {
   height: 200px;
@@ -39,4 +40,5 @@ body {
       border-box;
   border-radius: 50%;
   border: 15px solid transparent;
+  filter: blur(1px);
 }
