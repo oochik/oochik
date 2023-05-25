@@ -1,5 +1,9 @@
 import styled from "@emotion/styled";
 import { Instagram } from "iconsax-react";
+import InstagramIcon from '../assets/instagram.svg'
+import DiscordIcon from '../assets/discord.svg'
+import TwitterIcon from '../assets/twitter.svg'
+import { Twitter } from "@mui/icons-material";
 
 const Bar = styled.div`
 height: 400px;
@@ -32,17 +36,30 @@ background: linear-gradient(177deg, rgba(159,200,59,1) 0%, rgba(0,141,49,1) 100%
 -webkit-text-fill-color: transparent;
 `
 
+const SocialMedia = styled.div`
+background-size:contain;
+background-repeat:no-repeat;
+background-position:center;
+width:42px;
+height:42px;
+cursor:pointer;
+`
+
 
 
 
 
 const Naver = () => {
     return (<Bar className="d-none d-lg-flex">
-        <GradientTitle>
-            <Instagram size="40px" color="#9FC83B" style={{ color: 'linear-gradient(177deg, rgba(159,200,59,1) 0%, rgba(0,141,49,1) 100%)' }} />
-        </GradientTitle>
-        <Instagram size="40px" color="#9FC83B" />
-        <Instagram size="40px" color="#9FC83B" />
+        <SocialMedia
+            style={{ backgroundImage: `url(${InstagramIcon})` }}
+        />
+        <SocialMedia
+            style={{ backgroundImage: `url(${DiscordIcon})` }}
+        />
+        <SocialMedia
+            style={{ backgroundImage: `url(${TwitterIcon})` }}
+        />
     </Bar>);
 }
 

@@ -11,6 +11,10 @@ const HeaderContainer = styled.div`
 padding:30px;
 // border:1px solid white;
 margin-bottom:30vh;
+@media screen and (max-width: 990px) {
+    margin-bottom:100px;
+};
+
 `
 const OoChikGif = styled.div`
 background-image: url(${banner});

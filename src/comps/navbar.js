@@ -2,6 +2,11 @@ import styled from "@emotion/styled";
 import { ArrowForward, ArrowForwardIos } from "@mui/icons-material";
 import { ArrowRight2 } from "iconsax-react";
 import { Link } from "react-router-dom";
+import InstagramIcon from '../assets/instagram.svg'
+import DiscordIcon from '../assets/discord.svg'
+import TwitterIcon from '../assets/twitter.svg'
+import MenuIcon from '../assets/menu.svg'
+import Wallet2Icon from '../assets/wallet-2.svg'
 
 const NavbarTablet = styled.div`
 height: 60px;
@@ -19,6 +24,10 @@ border-color:#9FC83B;
 overflow:hidden;
 padding:0 30px;
 background-blend-mode: overlay;
+@media screen and (max-width: 575px) {
+    padding:0 50px;
+}    
+
 `
 const ArrowButton = styled.div`
 border-radius:50%;
@@ -30,6 +39,19 @@ display:flex;
 justify-content:center;
 align-items:center;
 `
+const SocialMedia = styled.div`
+background-size:contain;
+background-repeat:no-repeat;
+background-position:center;
+width:32px;
+height:32px;
+cursor:pointer;
+margin-left:40px;
+@media screen and (max-width: 575px) {
+    margin:0;
+}    
+`
+
 
 const Navbar = () => {
     return (
@@ -65,10 +87,35 @@ const Navbar = () => {
                         Litepaper Channel
                     </Link>
                 </div>
+                <div className="d-flex col-6 align-items-center justify-content-end">
+                    <SocialMedia
+                        style={{ backgroundImage: `url(${InstagramIcon})` }}
+                    />
+                    <SocialMedia
+                        style={{ backgroundImage: `url(${DiscordIcon})` }}
+                    />
+                    <SocialMedia
+                        style={{ backgroundImage: `url(${TwitterIcon})` }}
+                    />
+                    <SocialMedia
+                        style={{ backgroundImage: `url(${Wallet2Icon})` }}
+                    />
+                </div>
             </NavbarTablet>
             {/*mobile navbar*/}
             <NavbarTablet className="mb-5 d-flex d-sm-none">
-
+                <SocialMedia
+                    style={{ backgroundImage: `url(${InstagramIcon})` }}
+                />
+                <SocialMedia
+                    style={{ backgroundImage: `url(${DiscordIcon})` }}
+                />
+                <SocialMedia
+                    style={{ backgroundImage: `url(${TwitterIcon})` }}
+                />
+                <SocialMedia
+                    style={{ backgroundImage: `url(${MenuIcon})` }}
+                />
             </NavbarTablet>
         </>
     );
