@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from "@emotion/styled/macro";
 import giff from '../assets/0.gif'
 
 
@@ -21,6 +21,7 @@ const MintButton = styled.button`
     border: 1px solid rgba(159, 200, 59, 0.5);
     background-blend-mode: overlay;
     mix-blend-mode: normal;
+    transition:500ms ease;
     border-radius: 31.2151px;
     width: 100%;
     height: 40px;
@@ -49,8 +50,9 @@ const DesktopCard = styled.div`
     background-repeat:no-repeat;
     background-position:center;
     border-radius:48px;
-    width: 325px;
-    height: 325px;
+    // width: 325px;
+    height: 400px;
+    // height:100%;
     box-shadow: 0px 6.1784px 13px rgba(0, 0, 0, 0.25);
     display:flex;
     flex-direction:column;
@@ -58,29 +60,36 @@ const DesktopCard = styled.div`
     padding:20px;
     @media screen and (max-width: 990px) {
         padding:15px;
-        width: 240px;
-        height: 260px;
+        // width: 240px;
+        height: 300px;
         border-radius: 16px;
     }    
     @media screen and (max-width: 575px) {
-        width: 170px;
-        height: 190px;
+        // width: 170px;
+        height: 200px;
     }    
+    &:hover{
+        box-shadow: 0px 6px 17px rgba(187, 224, 96, 0.25);
+        ${MintButton}{
+            display:flex;
+        }
+    }
+
 
 `
 
 const NFTCard = () => {
     return (
-        <div className="col-6 col-sm-4 col-lg-3 d-flex justify-content-center align-items-center" >
-            <DesktopCard >
-                {/* <OoChikGif /> */}
-                <div className="d-flex justify-content-between mb-1">
-                    <span style={{ color: "white", fontWeight: 500 }}>#12543</span>
-                    <span style={{ color: "white", fontWeight: 500 }}>12 <span style={{ fontWeight: 400 }}>ETH</span></span>
-                </div>
-                <MintButton>Mint</MintButton>
-            </DesktopCard>
-        </div>
+        // <div className="col-6 col-sm-4 col-lg-3 d-flex justify-content-center align-items-center" >
+        <DesktopCard >
+            {/* <OoChikGif /> */}
+            <div className="d-flex justify-content-between mb-1">
+                <span style={{ color: "white", fontWeight: 500 }}>#12543</span>
+                <span style={{ color: "white", fontWeight: 500 }}>12 <span style={{ fontWeight: 400 }}>ETH</span></span>
+            </div>
+            <MintButton>Mint</MintButton>
+        </DesktopCard>
+        // </div>
     );
 }
 
