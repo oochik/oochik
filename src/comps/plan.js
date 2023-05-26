@@ -30,15 +30,20 @@ transform: translate(-15px,100px);
 
 `
 const PlanContainer = styled.div`
-// height: 100vh;
+height: 100vh;
 // margin-bottom:30vh;
 width:100%;
 background:rgba(25,36,27,1);
-background: linear-gradient(177deg, rgba(25,36,27,1) 50%, rgba(25,36,27,0) 100%);
+background: linear-gradient(177deg,rgba(25,36,27,0) 0%, rgba(25,36,27,1) 30%,rgba(25,36,27,1) 50%, rgba(25,36,27,0) 100%);
 padding:100px;
 @media screen and (max-width: 990px) {
     padding:30px;
+    height:auto;
 };
+@media screen and (max-width: 575px) {
+    background: linear-gradient(90deg, rgba(25,36,27,1) 40%, rgba(25,36,27,0) 100%);
+};
+
 `
 const BioTextContainer = styled.div`
 // padding:50px 100px 0;

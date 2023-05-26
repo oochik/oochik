@@ -29,8 +29,8 @@ body {
   width: 200px;
   background: linear-gradient(
         180deg,
-        /* rgba(159, 200, 59, 0) 0%, */ #19241b,
-        /* rgba(159, 200, 59, 0) 50% */ #19241b
+        rgba(25, 36, 27, 1) 0%,
+        /* #19241b, */ rgba(25, 36, 27, 1) 50% /* #19241b */
       )
       padding-box,
     /* linear-gradient(to bottom, #9fc83b, rgba(255, 255, 255, 0))  */

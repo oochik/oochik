@@ -6,13 +6,14 @@ import { Link } from "react-router-dom";
 
 
 const HeaderContainer = styled.div`
-// height:100vh;    
+height:100vh;    
 // width:100%;
 padding:0 30px;
 // border:1px solid white;
-margin-bottom:30vh;
+// margin-bottom:30vh;
 @media screen and (max-width: 990px) {
     margin-bottom:100px;
+    height:auto;
 };
 
 `

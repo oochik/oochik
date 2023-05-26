@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import Particle from "./particles";
 import nodeBG from '../assets/nodeBG.svg'
+import NodeFooter from "./nodeFooter";
 
 const Title = styled.h5`
 font-weight:700;
@@ -27,21 +28,24 @@ const BioContainer = styled.div`
 // background-size:cover;
 // background-repeat:no-repeat;
 // background-position:bottom;
-padding-bottom:30vh;
+// padding-bottom:30vh;
+height:100vh;
 @media screen and (max-width: 990px) {
     padding:30px;
+    height:auto;
 };
 
 `
 
 const Bio = () => {
     return (
-        <BioContainer className="d-flex justify-content-center">
+        <BioContainer className="d-flex flex-column align-items-center justify-content-center">
             <BioTextContainer className="d-flex flex-column align-items-center text-center col-12 col-lg-8">
                 <Title className="my-5">Ai robotics is on next level of tech</Title>
-                <p style={{ color: "white", fontSize: "18px" }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p className="m-0" style={{ color: "white", fontSize: "18px" }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             </BioTextContainer>
             {/* <Particle /> */}
+            <NodeFooter />
         </BioContainer>
     );
 }

@@ -22,7 +22,7 @@ const Home = () => {
             <Plan />
             {/* <TopNFTs /> */}
             {/* <Particle /> */}
-            <NodeFooter/>
+            {/* <NodeFooter /> */}
         </HomeContainer>
     );
 }
