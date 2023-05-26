@@ -1,0 +1,22 @@
+{
+  "tokenStandard": "nft",
+  "number": 3,
+  "symbol": "MONK",
+  "sellerFeeBasisPoints": 250,
+  "isMutable": true,
+  "isSequential": true,
+  "creators": [
+    {
+      "address": "HVaniTW2AJnaPxPGyD8Qq27Z824APQJrn9UsTmfhsCq3",
+      "share": 100
+    }
+  ],
+  "uploadMethod": "nft_storage",
+  "ruleSet": null,
+  "awsConfig": null,
+  "nftStorageAuthToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDdCZThmRUI5MmJkQ2MzODU0ZDVjRmVEYzhkNTJEODNFYTNFYkE1ZTUiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY4NTExNjc1MTMyOSwibmFtZSI6Im9vY2hpayJ9.bFy7mV4qEnVNy09Co8xnjN8BqR5pAtqniXnsX6efPkM",
+  "shdwStorageAccount": null,
+  "pinataConfig": null,
+  "hiddenSettings": null,
+  "guards": null
+}

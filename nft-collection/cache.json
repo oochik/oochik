@@ -1,0 +1,42 @@
+{
+  "program": {
+    "candyMachine": "26FKwzSNAGD8YUQmRH3GRxnCGLLGc4LRyg4SLbHHxgKt",
+    "candyGuard": "",
+    "candyMachineCreator": "2LaZbw3HwDE54Cs4ARhXTmajNy7RryRzv71JtvBsQ31z",
+    "collectionMint": "8Xf4TxHJ8z6vFAD31i3XLAfbAqtpneGoNe1kvGabMs7H"
+  },
+  "items": {
+    "-1": {
+      "name": "Monkey collection",
+      "image_hash": "6a1097ddf20b1dda7cf3d375c2816ee5c5e8deae4111529106a4db5163053af4",
+      "image_link": "https://nftstorage.link/ipfs/bafybeifl7em2rnqshcdeyhomklso2kzornj37eflvazk4vtnuodu4fsbvu/collection.jpeg",
+      "metadata_hash": "141abec6498ebcb4f383565d3b47c31f070bf241372e467b41ae730d2dff423f",
+      "metadata_link": "https://nftstorage.link/ipfs/bafybeifgtomdxlgie36fcfiag2awlzqjs7gj4un7qw5t2uhxileubrvbeq/collection.json",
+      "onChain": true
+    },
+    "0": {
+      "name": "Monkey 0",
+      "image_hash": "e6759ab5f9fefca453bcbb9a390de5aa48e035d2e9287945a63fe7258d49c2cc",
+      "image_link": "https://nftstorage.link/ipfs/bafybeifl7em2rnqshcdeyhomklso2kzornj37eflvazk4vtnuodu4fsbvu/0.gif",
+      "metadata_hash": "908d2df3c6b9b26ff150c0a25d3297b0758e4a6f2c33870dccc4153624ebe338",
+      "metadata_link": "https://nftstorage.link/ipfs/bafybeifgtomdxlgie36fcfiag2awlzqjs7gj4un7qw5t2uhxileubrvbeq/0.json",
+      "onChain": true
+    },
+    "1": {
+      "name": "Monkey 1",
+      "image_hash": "e6759ab5f9fefca453bcbb9a390de5aa48e035d2e9287945a63fe7258d49c2cc",
+      "image_link": "https://nftstorage.link/ipfs/bafybeifl7em2rnqshcdeyhomklso2kzornj37eflvazk4vtnuodu4fsbvu/1.gif",
+      "metadata_hash": "3ff2b40ca1e16657f1739e7dad8f90c9ec8e86e175c929acaddfca55e20aa1e3",
+      "metadata_link": "https://nftstorage.link/ipfs/bafybeifgtomdxlgie36fcfiag2awlzqjs7gj4un7qw5t2uhxileubrvbeq/1.json",
+      "onChain": true
+    },
+    "2": {
+      "name": "Monkey 2",
+      "image_hash": "e6759ab5f9fefca453bcbb9a390de5aa48e035d2e9287945a63fe7258d49c2cc",
+      "image_link": "https://nftstorage.link/ipfs/bafybeifl7em2rnqshcdeyhomklso2kzornj37eflvazk4vtnuodu4fsbvu/2.gif",
+      "metadata_hash": "c77cb450ac33c19eaa5d94e615dfa2dcacf478f68a7e661c3a83b69af5d2694b",
+      "metadata_link": "https://nftstorage.link/ipfs/bafybeifgtomdxlgie36fcfiag2awlzqjs7gj4un7qw5t2uhxileubrvbeq/2.json",
+      "onChain": true
+    }
+  }
+}

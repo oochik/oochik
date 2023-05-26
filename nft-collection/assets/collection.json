@@ -1,0 +1,15 @@
+{
+  "name": "Monkey collection",
+  "description": "A collection of Monkies",
+  "image": "collection.jpeg",
+  "symbol": "MONK",
+  "attributes": [],
+  "properties": {
+    "files": [
+      {
+        "uri": "collection.jpeg",
+        "type": "image/jepg"
+      }
+    ]
+  }
+}
