@@ -6,6 +6,7 @@ import Plan from "../comps/plan";
 import Particle from "../comps/particles";
 import Bio from "../comps/bio";
 import TopNFTs from "../comps/topNFTSection";
+import NodeFooter from "../comps/nodeFooter";
 const HomeContainer = styled.div`
 // height:100vh;
 // border:1px solid purple; 
@@ -19,8 +20,9 @@ const Home = () => {
             <Header />
             <Bio />
             <Plan />
-            <TopNFTs />
-            <Particle />
+            {/* <TopNFTs /> */}
+            {/* <Particle /> */}
+            <NodeFooter/>
         </HomeContainer>
     );
 }

@@ -22,7 +22,7 @@ const Particle = ({ children }) => {
                 init={particlesInit}
                 loaded={particlesLoaded}
                 options={{
-                    style: { width: '100%', height: "300px" },
+                    style: { width: '100%', height: "400px" },
                     fullScreen: {
                         enable: false,
                         zIndex: 0
@@ -58,7 +58,7 @@ const Particle = ({ children }) => {
                     },
                     "particles": {
                         "number": {
-                            "value": 200,
+                            "value": 110,
                             "density": {
                                 "enable": true,
                                 "value_area": 700

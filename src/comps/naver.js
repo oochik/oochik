@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
-import { Instagram } from "iconsax-react";
 import InstagramIcon from '../assets/instagram.svg'
 import DiscordIcon from '../assets/discord.svg'
 import TwitterIcon from '../assets/twitter.svg'
-import { Twitter } from "@mui/icons-material";
+import InstagramHover from '../assets/instagramHover.svg'
+import DiscordHover from '../assets/discordHover.svg'
+import TwitterHover from '../assets/twitterHover.svg'
 
 const Bar = styled.div`
 height: 400px;
@@ -36,13 +37,41 @@ background: linear-gradient(177deg, rgba(159,200,59,1) 0%, rgba(0,141,49,1) 100%
 -webkit-text-fill-color: transparent;
 `
 
-const SocialMedia = styled.div`
+const Instagram = styled.div`
+background-image: url(${InstagramIcon});
 background-size:contain;
 background-repeat:no-repeat;
 background-position:center;
 width:42px;
 height:42px;
 cursor:pointer;
+&:hover {
+    background-image: url(${InstagramHover});
+};
+`
+const Discord = styled.div`
+background-image: url(${DiscordIcon});
+background-size:contain;
+background-repeat:no-repeat;
+background-position:center;
+width:42px;
+height:42px;
+cursor:pointer;
+&:hover {
+    background-image: url(${DiscordHover});
+};
+`
+const Twitter = styled.div`
+background-image: url(${TwitterIcon});
+background-size:contain;
+background-repeat:no-repeat;
+background-position:center;
+width:42px;
+height:42px;
+cursor:pointer;
+&:hover {
+    background-image: url(${TwitterHover});
+};
 `
 
 
@@ -51,7 +80,10 @@ cursor:pointer;
 
 const Naver = () => {
     return (<Bar className="d-none d-lg-flex">
-        <SocialMedia
+        <Instagram />
+        <Discord />
+        <Twitter />
+        {/* <SocialMedia
             style={{ backgroundImage: `url(${InstagramIcon})` }}
         />
         <SocialMedia
@@ -59,7 +91,7 @@ const Naver = () => {
         />
         <SocialMedia
             style={{ backgroundImage: `url(${TwitterIcon})` }}
-        />
+        /> */}
     </Bar>);
 }
 
