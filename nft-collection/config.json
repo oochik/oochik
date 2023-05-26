@@ -18,5 +18,12 @@
   "shdwStorageAccount": null,
   "pinataConfig": null,
   "hiddenSettings": null,
-  "guards": null
+  "guards": {
+    "default": {
+      "mintLimit": {
+        "id": 1,
+        "limit": 1
+      }
+    }
+  }
 }
