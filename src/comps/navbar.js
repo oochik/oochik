@@ -9,6 +9,8 @@ import MenuIcon from '../assets/menu.svg'
 import Wallet2Icon from '../assets/wallet-2.svg'
 
 const NavbarTablet = styled.div`
+position:sticky;
+top:0;
 height: 60px;
 margin: 0 30px;
 display:flex;
@@ -24,6 +26,8 @@ border-color:#9FC83B;
 overflow:hidden;
 padding:0 30px;
 background-blend-mode: overlay;
+backdrop-filter:blur(30px);
+z-index:88;
 @media screen and (max-width: 575px) {
     padding:0 50px;
 }    
@@ -57,13 +61,17 @@ const Navbar = () => {
     return (
         <>
             {/* desktop navbar  */}
-            <div className="d-none d-lg-flex align-items-center justify-content-between" style={{ height: "100px", margin: '0 40px 8vh' }}>
+            <div className=" d-none d-lg-flex align-items-center justify-content-between" style={{
+                zIndex: 88, backdropFilter: ' blur(30px)', position: 'sticky', top: '0', backgroundColor: 'rgba(25,36,27,0.0)', height: "100px",
+                marginBottom: '100px',
+                padding: '0 40px '
+            }}>
                 <div className="d-flex align-items-center col-6">
                     <Link to={'/'} className="me-5" style={{ fontSize: '20px', color: '#d1d1d1', textDecoration: "none" }}>
                         Home
                     </Link>
-                    <Link style={{ fontSize: '20px', color: '#d1d1d1', textDecoration: "none" }}>
-                        Litepaper Channel
+                    <Link to={'https://discord.com/channels/1081235620455796837/1103761932160335893'} style={{ fontSize: '20px', color: '#d1d1d1', textDecoration: "none" }}>
+                        Litepaper
                     </Link>
                 </div>
                 <div className="d-flex align-items-center col-6 justify-content-end">
@@ -83,8 +91,8 @@ const Navbar = () => {
                     <Link to={'/'} className="me-5" style={{ fontSize: '16px', color: '#d1d1d1', textDecoration: "none" }}>
                         Home
                     </Link>
-                    <Link style={{ fontSize: '16px', color: '#d1d1d1', textDecoration: "none" }}>
-                        Litepaper Channel
+                    <Link to={'https://discord.com/channels/1081235620455796837/1103761932160335893'} style={{ fontSize: '16px', color: '#d1d1d1', textDecoration: "none" }}>
+                        Litepaper
                     </Link>
                 </div>
                 <div className="d-flex col-6 align-items-center justify-content-end">

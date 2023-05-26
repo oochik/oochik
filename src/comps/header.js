@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 
 
 const HeaderContainer = styled.div`
-// height:100vh;
+// height:100vh;    
 // width:100%;
-padding:30px;
+padding:0 30px;
 // border:1px solid white;
 margin-bottom:30vh;
 @media screen and (max-width: 990px) {
@@ -74,7 +74,7 @@ const Header = () => {
             <div style={{}} className="col-12 col-sm-5 col-lg-5 d-flex justify-content-center align-items-center">
                 <OoChikGif />
             </div>
-            <div style={{}} className="col-12 col-sm-7 col-lg-5 d-flex flex-column text-start">
+            <div style={{}} className="col-12 col-sm-7 col-lg-5 d-flex flex-column justify-content-center  text-start">
                 <div style={{ position: "relative", padding: '60px 0 0 60px' }}>
                     <HalfCircle style={{ opacity: 0.2, top: 0, left: 0, width: '80px', height: '80px' }} />
                     <HalfCircle style={{ opacity: 0.6, top: '15px', left: '15px', width: '80px', height: '80px' }} />

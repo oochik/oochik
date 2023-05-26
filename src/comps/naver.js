@@ -26,6 +26,7 @@ padding:30px;
 background-blend-mode: overlay;
 mix-blend-mode: screen;
 z-index:999;
+backdrop-filter:blur(1px);
 
 `
 const GradientTitle = styled.div`

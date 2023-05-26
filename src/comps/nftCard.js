@@ -85,7 +85,7 @@ const NFTCard = () => {
             {/* <OoChikGif /> */}
             <div className="d-flex justify-content-between mb-1">
                 <span style={{ color: "white", fontWeight: 500 }}>#12543</span>
-                <span style={{ color: "white", fontWeight: 500 }}>12 <span style={{ fontWeight: 400 }}>ETH</span></span>
+                <span style={{ color: "white", fontWeight: 500 }}>12 <span style={{ fontWeight: 400 }}>SOL</span></span>
             </div>
             <MintButton>Mint</MintButton>
         </DesktopCard>
