@@ -47,9 +47,9 @@ overflow-y:scroll;
 width:100%;
 background:rgba(25,36,27,1);
 background: linear-gradient(177deg,rgba(25,36,27,0) 0%, rgba(25,36,27,1) 30%,rgba(25,36,27,1) 50%, rgba(25,36,27,0) 100%);
-padding:100px;
+padding:0 100px;
 @media screen and (max-width: 990px) {
-    padding:30px;
+    padding:0 30px;
     height:auto;
 };
 @media screen and (max-width: 575px) {

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 
 const HeaderContainer = styled.div`
-height:100vh;    
+height:90vh;    
 // width:100%;
 padding:0 30px;
 // border:1px solid white;
