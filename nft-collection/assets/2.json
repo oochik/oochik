@@ -1,0 +1,16 @@
+{
+    "name": "Monkey 2",
+    "description": "Monk DAO Genesis Pass 2",
+    "image": "2.gif",
+    "symbol": "MONK",
+    "attributes": [],
+    "properties": {
+      "files": [
+        {
+          "uri": "2.gif",
+          "type": "image/gif"
+        }
+      ]
+    }
+  }
+  
