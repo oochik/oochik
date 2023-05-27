@@ -81,9 +81,10 @@ const Header = () => {
                     <HalfCircle style={{ opacity: 0.6, top: '15px', left: '15px', width: '80px', height: '80px' }} />
                     <HalfCircle style={{ top: '30px', left: '30px', width: '80px', height: '80px' }} />
                     <Title className="mb-2">
-                        Ai robotics is on next level of tech
+                        oochik DAO Unleashing Creativity, Empowering Innovation
                     </Title>
-                    <Par>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius</Par>
+                    <Par>Oochik is a creative collective of independent creators. Our mission is to bring innovative ideas to life and empower others to express themselves through art and technology. Join us to explore the possibilities of creative collaboration!
+                    </Par>
                 </div>
                 <div className="mt-3 mt-sm-5 mb-5" style={{ position: "relative", padding: '60px 0 20px 60px' }}>
                     <HalfCircle style={{ opacity: 0.2, top: 0, left: 0, width: '100px', height: '100px' }} />
