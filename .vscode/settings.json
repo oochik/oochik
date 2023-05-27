@@ -1,0 +1,24 @@
+{
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#27462d",
+        "titleBar.activeBackground": "#19241b",
+        "titleBar.activeForeground": "#9FC83B",
+        // "button.background": "#1176A4",
+        // "button.foreground": "#1176A4",
+        // "button.border": "#1176A4",
+        // "button.hoverBackground": "#1176A4",
+        // "button.secondaryForeground": "#1176A4",
+        // "button.secondaryBackground": "#1176A4",
+        // "button.secondaryHoverBackground": "#1176A4",
+        "checkbox.background": "#19241b",
+        "checkbox.foreground": "#19241b",
+        "checkbox.border": "#9FC83B",
+        "input.background": "#1b2601",
+        "input.border": "#9FC83B",
+        "scrollbar.shadow": "#9FC83B",
+        "scrollbar.background": "#19241b",
+        "scrollbarSlider.activeBackground": "#9FC83B",
+        "scrollbarSlider.background": "#19241b",
+        "scrollbarSlider.hoverBackground": "#9FC83B",
+    }
+}

@@ -7,6 +7,10 @@ import DiscordIcon from '../assets/discord.svg'
 import TwitterIcon from '../assets/twitter.svg'
 import MenuIcon from '../assets/menu.svg'
 import Wallet2Icon from '../assets/wallet-2.svg'
+import {
+    WalletModalProvider,
+    WalletMultiButton
+} from '@solana/wallet-adapter-react-ui';
 
 const NavbarTablet = styled.div`
 position:sticky;
@@ -57,7 +61,7 @@ margin-left:40px;
 `
 
 
-const Navbar = () => {
+const Navbar = ({ connectButton }) => {
     return (
         <>
             {/* desktop navbar  */}
@@ -77,7 +81,8 @@ const Navbar = () => {
                 <div className="d-flex align-items-center col-6 justify-content-end">
                     <Link style={{ fontSize: '20px', color: '#9FC83B', textDecoration: "none" }}>
                         <div className="d-flex align-items-center">
-                            Connect Wallet
+                            <WalletMultiButton />
+                            {/* Connect Wallet */}
                             <ArrowButton className="ms-2">
                                 <ArrowRight2 size="18px" />
                             </ArrowButton>

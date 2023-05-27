@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useMemo, } from 'react';
 import {
   BrowserRouter,
   Routes,
@@ -14,6 +14,22 @@ import Navbar from './comps/navbar';
 import styled from '@emotion/styled';
 import bg from './assets/backgroundCircles.svg'
 import MintPage from './pages/mintPage';
+import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
+import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
+import {
+  GlowWalletAdapter,
+  PhantomWalletAdapter,
+  SlopeWalletAdapter,
+  SolflareWalletAdapter,
+  TorusWalletAdapter,
+} from '@solana/wallet-adapter-wallets';
+import {
+  WalletModalProvider,
+  WalletMultiButton
+} from '@solana/wallet-adapter-react-ui';
+import { clusterApiUrl } from '@solana/web3.js';
+import '@solana/wallet-adapter-react-ui/styles.css';
+import { MetaplexProvider } from './utils/metaplexProvider';
 
 
 const theme = createTheme({
@@ -34,23 +50,67 @@ background-repeat:repeat-y;
 
 
 function App() {
+  const [network, setNetwork] = useState(WalletAdapterNetwork.Devnet);
+
+  const endpoint = useMemo(() => clusterApiUrl(network), [network]);
+
+  const wallets = useMemo(
+    () => [
+      new PhantomWalletAdapter(),
+      new GlowWalletAdapter(),
+      new SlopeWalletAdapter(),
+      new SolflareWalletAdapter({ network }),
+      new TorusWalletAdapter(),
+    ],
+    [network]
+  );
+
+  const handleChange = (event) => {
+    switch (event.target.value) {
+      case "devnet":
+        setNetwork(WalletAdapterNetwork.Devnet);
+        break;
+      case "mainnet":
+        setNetwork(WalletAdapterNetwork.Mainnet);
+        break;
+      case "testnet":
+        setNetwork(WalletAdapterNetwork.Testnet);
+        break;
+      default:
+        setNetwork(WalletAdapterNetwork.Devnet);
+        break;
+    }
+  };
+
+
+
   return (
-    <BrowserRouter>
-      <ScrollToTop>
-        <ThemeProvider theme={theme}>
-          <>
-            <HomeContainer>
-              <Navbar />
-              <Routes>
-                <Route exact path="/" element={<Home />} />
-                <Route exact path="/mint" element={<MintPage />} />
-                <Route path='*' element={<NotFound />} />
-              </Routes>
-            </HomeContainer>
-          </>
-        </ThemeProvider>
-      </ScrollToTop>
-    </BrowserRouter>
+    <ConnectionProvider endpoint={endpoint}>
+      <WalletProvider wallets={wallets} autoConnect>
+        <WalletModalProvider>
+          <MetaplexProvider>
+
+            <BrowserRouter>
+              <ScrollToTop>
+                <ThemeProvider theme={theme}>
+                  <>
+                    <HomeContainer>
+                      <Navbar />
+                      <Routes>
+                        <Route exact path="/" element={<Home />} />
+                        <Route exact path="/mint" element={<MintPage />} />
+                        <Route path='*' element={<NotFound />} />
+                      </Routes>
+                    </HomeContainer>
+                  </>
+                </ThemeProvider>
+              </ScrollToTop>
+            </BrowserRouter>
+
+          </MetaplexProvider>
+        </WalletModalProvider>
+      </WalletProvider>
+    </ConnectionProvider>
   );
 }
 

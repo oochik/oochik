@@ -32,6 +32,18 @@ transform: translate(-15px,100px);
 const PlanContainer = styled.div`
 height: 100vh;
 // margin-bottom:30vh;
+overflow-y:scroll;
+&::-webkit-scrollbar {
+    display:none;
+}
+&::-webkit-scrollbar-thumb {
+    display:none;
+}
+&::-webkit-scrollbar-button{
+    display:none;
+}
+ -ms-overflow-style: none;
+
 width:100%;
 background:rgba(25,36,27,1);
 background: linear-gradient(177deg,rgba(25,36,27,0) 0%, rgba(25,36,27,1) 30%,rgba(25,36,27,1) 50%, rgba(25,36,27,0) 100%);

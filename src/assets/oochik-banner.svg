@@ -60,7 +60,7 @@
 <stop offset="0.850268" stop-color="#9FC83B"/>
 </linearGradient>
 <linearGradient id="paint1_linear_6_300" x1="382.688" y1="11.0026" x2="190.691" y2="291.267" gradientUnits="userSpaceOnUse">
-<stop stop-color="#9FC83B"/>
+<stop stop-color="FC83B"/>
 <stop offset="0.200389" stop-color="#A6FFC3"/>
 <stop offset="0.432292" stop-color="#9FC83B"/>
 <stop offset="0.71875" stop-color="#B0FECA"/>
