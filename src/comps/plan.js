@@ -45,6 +45,19 @@ padding:100px;
 };
 
 `
+const RoadContent = styled.p`
+color:white;
+width:200px;
+text-align:center;
+// margin-top:200px;
+@media screen and (max-width: 990px) {
+width:100px;
+// margin-top:100px;
+};
+@media screen and (max-width: 575px) {
+};
+
+`
 const BioTextContainer = styled.div`
 // padding:50px 100px 0;
 // @media screen and (max-width: 990px) {
@@ -61,43 +74,52 @@ const Plan = () => {
             <div className='d-flex flex-sm-column'>
                 <div className="d-none d-sm-flex justify-content-center"
                     style={{ height: 'min-content', marginBottom: "100px", paddingLeft: '60px' }}>
-                    <div className="d-flex" style={{ height: 'min-content' }}>
-                        <ContainerRadius
-                            className="d-flex justify-content-center text-center">
-                            <div className="btn-gradient-up" style={{ color: "#727272", }}>S<span style={{ color: "white" }}>1</span></div>
-                        </ContainerRadius>
-                        <ContainerRadiusBottom className="d-flex justify-content-center text-center align-items-end">
-                            <div className="btn-gradient-down"></div>
-                        </ContainerRadiusBottom>
+                    <div className="d-flex flex-column">
+                        <div className="d-flex" style={{ height: 'min-content' }}>
+                            <ContainerRadius
+                                className="d-flex justify-content-center text-center">
+                                <div className="btn-gradient-up" style={{ color: "#727272", }}>S<span style={{ color: "white" }}>1</span></div>
+                            </ContainerRadius>
+                            <ContainerRadiusBottom className="d-flex justify-content-center text-center align-items-end">
+                                <div className="btn-gradient-down"></div>
+                            </ContainerRadiusBottom>
+                        </div>
+                        <RoadContent style={{}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</RoadContent>
                     </div>
-                    <div className="d-flex"
-                        style={{ transform: 'translateX(-30px)', height: 'min-content' }}
-                    >
-                        <ContainerRadius
-                            className="d-flex justify-content-center text-center">
-                            <div className="btn-gradient-up"
-                                style={{ color: "#727272" }}>
-                                S
-                                <span style={{ color: "white" }}>2</span>
-                            </div>
-                        </ContainerRadius>
-                        <ContainerRadiusBottom
-                            className="d-flex justify-content-center text-center align-items-end">
-                            <div className="btn-gradient-down"></div>
-                        </ContainerRadiusBottom>
+                    <div className="d-flex flex-column">
+                        <div className="d-flex"
+                            style={{ transform: 'translateX(-30px)', height: 'min-content' }}
+                        >
+                            <ContainerRadius
+                                className="d-flex justify-content-center text-center">
+                                <div className="btn-gradient-up"
+                                    style={{ color: "#727272" }}>
+                                    S
+                                    <span style={{ color: "white" }}>2</span>
+                                </div>
+                            </ContainerRadius>
+                            <ContainerRadiusBottom
+                                className="d-flex justify-content-center text-center align-items-end">
+                                <div className="btn-gradient-down"></div>
+                            </ContainerRadiusBottom>
+                        </div>
+                        <RoadContent style={{ transform: 'translateX(-30px)' }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</RoadContent>
                     </div>
-                    <div className="d-flex"
-                        style={{ transform: 'translateX(-60px)', height: 'min-content' }}
-                    >
-                        <ContainerRadius
-                            className="d-flex justify-content-center text-center">
-                            <div
-                                className="btn-gradient-up"
-                                style={{ color: "#727272" }}>
-                                S
-                                <span style={{ color: "white" }}>3</span>
-                            </div>
-                        </ContainerRadius>
+                    <div className="d-flex flex-column">
+                        <div className="d-flex"
+                            style={{ transform: 'translateX(-60px)', height: 'min-content' }}
+                        >
+                            <ContainerRadius
+                                className="d-flex justify-content-center text-center">
+                                <div
+                                    className="btn-gradient-up"
+                                    style={{ color: "#727272" }}>
+                                    S
+                                    <span style={{ color: "white" }}>3</span>
+                                </div>
+                            </ContainerRadius>
+                        </div>
+                        <RoadContent style={{ transform: 'translateX(-60px)' }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</RoadContent>
                     </div>
                 </div>
 
@@ -141,13 +163,11 @@ const Plan = () => {
                                 <span style={{ color: "white" }}>3</span>
                             </div>
                         </ContainerRadius>
+
                     </div>
                 </div>
 
 
-                <BioTextContainer className="d-flex flex-column align-items-center justify-content-center text-center">
-                    <p className="mt-0 mt-lg-5" style={{ color: "white" }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                </BioTextContainer>
             </div>
 
         </PlanContainer >
