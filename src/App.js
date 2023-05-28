@@ -65,11 +65,10 @@ function App() {
     ],
     [network]
   );
-
-  const handleChange = (event) => {
+  
+  useEffect(() => {
     const cluster = process.env.REACT_APP_CLUSTER
-
-    switch (event.target.value) {
+    switch (cluster) {
       case "devnet":
         setNetwork(WalletAdapterNetwork.Devnet);
         break;
@@ -83,7 +82,7 @@ function App() {
         setNetwork(WalletAdapterNetwork.Devnet);
         break;
     }
-  };
+  }, [])
 
 
 
