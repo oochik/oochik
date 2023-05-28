@@ -30,6 +30,7 @@ import {
 import { clusterApiUrl } from '@solana/web3.js';
 import '@solana/wallet-adapter-react-ui/styles.css';
 import { MetaplexProvider } from './utils/metaplexProvider';
+import { MintNFTs } from './pages/MintNFTs';
 
 
 const theme = createTheme({
@@ -66,6 +67,8 @@ function App() {
   );
 
   const handleChange = (event) => {
+    const cluster = process.env.REACT_APP_CLUSTER
+
     switch (event.target.value) {
       case "devnet":
         setNetwork(WalletAdapterNetwork.Devnet);
@@ -98,7 +101,8 @@ function App() {
                       <Navbar />
                       <Routes>
                         <Route exact path="/" element={<Home />} />
-                        <Route exact path="/mint" element={<MintPage />} />
+                        {/* <Route exact path="/mint" element={<MintPage />} /> */}
+                        <Route exact path="/mint" element={<MintNFTs />} />
                         <Route path='*' element={<NotFound />} />
                       </Routes>
                     </HomeContainer>
