@@ -101,34 +101,57 @@ const Navbar = ({ connectButton }) => {
                     </Link>
                 </div>
                 <div className="d-flex col-6 align-items-center justify-content-end">
-                    <SocialMedia
-                        style={{ backgroundImage: `url(${InstagramIcon})` }}
-                    />
-                    <SocialMedia
-                        style={{ backgroundImage: `url(${DiscordIcon})` }}
-                    />
-                    <SocialMedia
-                        style={{ backgroundImage: `url(${TwitterIcon})` }}
-                    />
-                    <SocialMedia
-                        style={{ backgroundImage: `url(${Wallet2Icon})` }}
-                    />
+                    <Link to={'https://www.instagram.com/oochikdao/'} style={{ textDecoration: 'none', color: 'inherit', width: "min-content", height: "min-content"}}>
+                        <SocialMedia
+                            style={{ backgroundImage: `url(${InstagramIcon})` }}
+                        />
+                    </Link>
+                    
+                    <Link to={'https://discord.gg/7XrDR78PZM'} style={{ textDecoration: 'none', color: 'inherit', width: "min-content", height: "min-content"}}>
+                        <SocialMedia
+                            style={{ backgroundImage: `url(${DiscordIcon})` }}
+                        />
+                    </Link>
+                    
+                    <Link to={'https://twitter.com/OochikDao?s=20'} style={{ textDecoration: 'none', color: 'inherit', width: "min-content", height: "min-content"}}>
+                        <SocialMedia
+                            style={{ backgroundImage: `url(${TwitterIcon})` }}
+                        />
+                    </Link>
+
+                    <Link to={'https://twitter.com/OochikDao?s=20'} style={{ textDecoration: 'none', color: 'inherit', width: "min-content", height: "min-content"}}>
+                        <SocialMedia
+                            style={{ backgroundImage: `url(${Wallet2Icon})` }}
+                        />
+                    </Link>
+                        
                 </div>
             </NavbarTablet>
             {/*mobile navbar*/}
             <NavbarTablet className="mb-5 d-flex d-sm-none">
-                <SocialMedia
-                    style={{ backgroundImage: `url(${InstagramIcon})` }}
-                />
-                <SocialMedia
-                    style={{ backgroundImage: `url(${DiscordIcon})` }}
-                />
-                <SocialMedia
-                    style={{ backgroundImage: `url(${TwitterIcon})` }}
-                />
-                <SocialMedia
-                    style={{ backgroundImage: `url(${MenuIcon})` }}
-                />
+                    <Link to={'https://www.instagram.com/oochikdao/'} style={{ textDecoration: 'none', color: 'inherit', width: "min-content", height: "min-content"}}>
+                        <SocialMedia
+                            style={{ backgroundImage: `url(${InstagramIcon})` }}
+                        />
+                    </Link>
+                    
+                    <Link to={'https://discord.gg/7XrDR78PZM'} style={{ textDecoration: 'none', color: 'inherit', width: "min-content", height: "min-content"}}>
+                        <SocialMedia
+                            style={{ backgroundImage: `url(${DiscordIcon})` }}
+                        />
+                    </Link>
+                    
+                    <Link to={'https://twitter.com/OochikDao?s=20'} style={{ textDecoration: 'none', color: 'inherit', width: "min-content", height: "min-content"}}>
+                        <SocialMedia
+                            style={{ backgroundImage: `url(${TwitterIcon})` }}
+                        />
+                    </Link>
+
+                    <Link to={'https://twitter.com/OochikDao?s=20'} style={{ textDecoration: 'none', color: 'inherit', width: "min-content", height: "min-content"}}>
+                        <SocialMedia
+                            style={{ backgroundImage: `url(${Wallet2Icon})` }}
+                        />
+                    </Link>
             </NavbarTablet>
         </>
     );

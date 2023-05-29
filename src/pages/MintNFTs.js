@@ -28,27 +28,6 @@ export const MintNFTs = ({ onClusterChange }) => {
       () => checkEligibility()
     );
 
-    // add a listener to reevaluate if the user is allowed to mint if startDate is reached
-    const slot = await metaplex.connection.getSlot();
-    const solanaTime = await metaplex.connection.getBlockTime(slot);
-    const startDateGuard = candyMachine.candyGuard.guards.startDate;
-    if (startDateGuard != null) {
-      const candyStartDate = startDateGuard.date.toString(10);
-      const refreshTime = candyStartDate - solanaTime.toString(10);
-      if (refreshTime > 0) {
-        setTimeout(() => checkEligibility(), refreshTime * 1000);
-      }
-    }
-
-    // also reevaluate eligibility after endDate is reached
-    const endDateGuard = candyMachine.candyGuard.guards.endDate;
-    if (endDateGuard != null) {
-      const candyEndDate = endDateGuard.date.toString(10);
-      const refreshTime = solanaTime.toString(10) - candyEndDate;
-      if (refreshTime > 0) {
-        setTimeout(() => checkEligibility(), refreshTime * 1000);
-      }
-    }
   };
 
   const checkEligibility = async () => {
@@ -81,31 +60,7 @@ export const MintNFTs = ({ onClusterChange }) => {
     const slot = await metaplex.connection.getSlot();
     const solanaTime = await metaplex.connection.getBlockTime(slot);
 
-    if (guard.startDate != null) {
-      const candyStartDate = guard.startDate.date.toString(10);
-      if (solanaTime < candyStartDate) {
-        console.error("startDate: CM not live yet");
-        setDisableMint(true);
-        return;
-      }
-    }
-
-    if (guard.endDate != null) {
-      const candyEndDate = guard.endDate.date.toString(10);
-      if (solanaTime > candyEndDate) {
-        console.error("endDate: CM not live anymore");
-        setDisableMint(true);
-        return;
-      }
-    }
-
-    if (guard.addressGate != null) {
-      if (metaplex.identity().publicKey.toBase58() != guard.addressGate.address.toBase58()) {
-        console.error("addressGate: You are not allowed to mint");
-        setDisableMint(true);
-        return;
-      }
-    }
+ 
 
     if (guard.mintLimit != null) {
       const mitLimitCounter = metaplex.candyMachines().pdas().mintLimitCounter({
@@ -124,117 +79,6 @@ export const MintNFTs = ({ onClusterChange }) => {
         console.error("mintLimit: mintLimit reached!");
         setDisableMint(true);
         return;
-      }
-    }
-
-    if (guard.solPayment != null) {
-      walletBalance = await metaplex.connection.getBalance(
-        metaplex.identity().publicKey
-      );
-
-      const costInLamports = guard.solPayment.amount.basisPoints.toString(10);
-
-      if (costInLamports > walletBalance) {
-        console.error("solPayment: Not enough SOL!");
-        setDisableMint(true);
-        return;
-      }
-    }
-
-    if (guard.freezeSolPayment != null) {
-      walletBalance = await metaplex.connection.getBalance(
-        metaplex.identity().publicKey
-      );
-
-      const costInLamports = guard.freezeSolPayment.amount.basisPoints.toString(10);
-
-      if (costInLamports > walletBalance) {
-        console.error("freezeSolPayment: Not enough SOL!");
-        setDisableMint(true);
-        return;
-      }
-    }
-
-    if (guard.nftGate != null) {
-      const ownedNfts = await metaplex.nfts().findAllByOwner({ owner: metaplex.identity().publicKey });
-      const nftsInCollection = ownedNfts.filter(obj => {
-        return (obj.collection?.address.toBase58() === guard.nftGate.requiredCollection.toBase58()) && (obj.collection?.verified === true);
-      });
-      if (nftsInCollection.length < 1) {
-        console.error("nftGate: The user has no NFT to pay with!");
-        setDisableMint(true);
-        return;
-      }
-    }
-
-    if (guard.nftBurn != null) {
-      const ownedNfts = await metaplex.nfts().findAllByOwner({ owner: metaplex.identity().publicKey });
-      const nftsInCollection = ownedNfts.filter(obj => {
-        return (obj.collection?.address.toBase58() === guard.nftBurn.requiredCollection.toBase58()) && (obj.collection?.verified === true);
-      });
-      if (nftsInCollection.length < 1) {
-        console.error("nftBurn: The user has no NFT to pay with!");
-        setDisableMint(true);
-        return;
-      }
-    }
-
-    if (guard.nftPayment != null) {
-      const ownedNfts = await metaplex.nfts().findAllByOwner({ owner: metaplex.identity().publicKey });
-      const nftsInCollection = ownedNfts.filter(obj => {
-        return (obj.collection?.address.toBase58() === guard.nftPayment.requiredCollection.toBase58()) && (obj.collection?.verified === true);
-      });
-      if (nftsInCollection.length < 1) {
-        console.error("nftPayment: The user has no NFT to pay with!");
-        setDisableMint(true);
-        return;
-      }
-    }
-
-    if (guard.redeemedAmount != null) {
-      if (guard.redeemedAmount.maximum.toString(10) <= candyMachine.itemsMinted.toString(10)) {
-        console.error("redeemedAmount: Too many NFTs have already been minted!");
-        setDisableMint(true);
-        return;
-      }
-    }
-
-    if (guard.tokenBurn != null) {
-      const ata = await metaplex.tokens().pdas().associatedTokenAccount({ mint: guard.tokenBurn.mint, owner: metaplex.identity().publicKey });
-      const balance = await metaplex.connection.getTokenAccountBalance(ata);
-      if (balance < guard.tokenBurn.amount.basisPoints.toNumber()) {
-        console.error("tokenBurn: Not enough SPL tokens to burn!");
-        setDisableMint(true);
-        return;
-      }
-    }
-
-    if (guard.tokenGate != null) {
-      const ata = await metaplex.tokens().pdas().associatedTokenAccount({ mint: guard.tokenGate.mint, owner: metaplex.identity().publicKey });
-      const balance = await metaplex.connection.getTokenAccountBalance(ata);
-      if (balance < guard.tokenGate.amount.basisPoints.toNumber()) {
-        console.error("tokenGate: Not enough SPL tokens!");
-        setDisableMint(true);
-        return;
-      }
-    }
-
-    if (guard.tokenPayment != null) {
-      const ata = await metaplex.tokens().pdas().associatedTokenAccount({ mint: guard.tokenPayment.mint, owner: metaplex.identity().publicKey });
-      const balance = await metaplex.connection.getTokenAccountBalance(ata);
-      if (balance < guard.tokenPayment.amount.basisPoints.toNumber()) {
-        console.error("tokenPayment: Not enough SPL tokens to pay!");
-        setDisableMint(true);
-        return;
-      }
-      if (guard.freezeTokenPayment != null) {
-        const ata = await metaplex.tokens().pdas().associatedTokenAccount({ mint: guard.freezeTokenPayment.mint, owner: metaplex.identity().publicKey });
-        const balance = await metaplex.connection.getTokenAccountBalance(ata);
-        if (balance < guard.tokenPayment.amount.basisPoints.toNumber()) {
-          console.error("freezeTokenPayment: Not enough SPL tokens to pay!");
-          setDisableMint(true);
-          return;
-        }
       }
     }
 
@@ -259,18 +103,13 @@ export const MintNFTs = ({ onClusterChange }) => {
   }
 
   const onClick = async () => {
-    candyMachine = await metaplex
-      .candyMachines()
-      .findByAddress({ address: candyMachineAddress });
     // Here the actual mint happens. Depending on the guards that you are using you have to run some pre validation beforehand 
     // Read more: https://docs.metaplex.com/programs/candy-machine/minting#minting-with-pre-validation
-    console.log(candyMachine)
-    console.log(candyMachine.authorityAddress)
     const { nft } = await metaplex.candyMachines().mint({
       candyMachine,
-      candyGuard:process.env.REACT_APP_CANDY_GUARD,
       collectionUpdateAuthority: candyMachine.authorityAddress,
     });
+
     setNft(nft);
   };
 

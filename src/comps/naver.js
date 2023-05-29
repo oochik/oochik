@@ -5,6 +5,22 @@ import TwitterIcon from '../assets/twitter.svg'
 import InstagramHover from '../assets/instagramHover.svg'
 import DiscordHover from '../assets/discordHover.svg'
 import TwitterHover from '../assets/twitterHover.svg'
+import Wallet2Icon from '../assets/wallet-2.svg'
+
+import { Link } from "react-router-dom";
+
+const SocialMedia = styled.div`
+background-size:contain;
+background-repeat:no-repeat;
+background-position:center;
+width:32px;
+height:32px;
+cursor:pointer;
+margin-left:40px;
+@media screen and (max-width: 575px) {
+    margin:0;
+}    
+`
 
 const Bar = styled.div`
 height: 400px;
@@ -81,18 +97,23 @@ cursor:pointer;
 
 const Naver = () => {
     return (<Bar className="d-none d-lg-flex">
-        <Instagram />
-        <Discord />
-        <Twitter />
-        {/* <SocialMedia
-            style={{ backgroundImage: `url(${InstagramIcon})` }}
-        />
-        <SocialMedia
-            style={{ backgroundImage: `url(${DiscordIcon})` }}
-        />
-        <SocialMedia
-            style={{ backgroundImage: `url(${TwitterIcon})` }}
-        /> */}
+        
+        <Link to={'https://www.instagram.com/oochikdao/'} style={{ textDecoration: 'none', color: 'inherit', width: "min-content", height: "min-content"}}>
+            <Instagram />
+
+        </Link>
+        
+        <Link to={'https://discord.gg/7XrDR78PZM'} style={{ textDecoration: 'none', color: 'inherit', width: "min-content", height: "min-content"}}>
+            <Discord />
+
+        </Link>
+        
+        <Link to={'https://twitter.com/OochikDao?s=20'} style={{ textDecoration: 'none', color: 'inherit', width: "min-content", height: "min-content"}}>
+            <Twitter />
+
+        </Link>
+
+        
     </Bar>);
 }
 

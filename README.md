@@ -10,5 +10,7 @@ sugar upload
 sugar deploy 
 sugar guard add
 sugar guard update
-sugar guard show 
+sugar guard show
+# or 
+sugar launch 
 ```

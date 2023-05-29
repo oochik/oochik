@@ -41,9 +41,9 @@ const Bio = () => {
     return (
         <BioContainer className="d-flex flex-column align-items-center justify-content-center">
             <BioTextContainer className="d-flex flex-column align-items-center text-center col-12 col-lg-8">
-                <Title className="my-5">Collaborate, Create, and Conquer with Oochik DAO</Title>
+                <Title className="my-5">Collaborate, Create, and Conquer with OOCHIK DAO</Title>
                 <p className="m-0" style={{ color: "white", fontSize: "18px" }}>
-                    Oochik is a Decentralized Autonomous Organization (DAO) focused on the intersection of creativity and subcultures within the Web 3.0 ecosystem. Our mission is to bring together creative individuals passionate about social communication, art, technology, and independent creativity. We aim to document and promote the movement connecting creativity and subcultural expressions with Web 3.0 through blockchain technology.
+                OOCHIK is a Decentralized Autonomous Organization (DAO) focused on the intersection of creativity and subcultures within the Web 3.0 ecosystem. Our mission is to bring together creative individuals passionate about social communication, art, technology, and independent creativity. We aim to document and promote the movement connecting creativity and subcultural expressions with Web 3.0 through blockchain technology.
                 </p>
             </BioTextContainer>
             {/* <Particle /> */}
