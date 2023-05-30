@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/oochikdao/static/css/main.879740c4.css",
+    "main.js": "/oochikdao/static/js/main.f2bb4bcd.js",
+    "static/js/415.b85a9cf2.chunk.js": "/oochikdao/static/js/415.b85a9cf2.chunk.js",
+    "static/js/951.3adcceb4.chunk.js": "/oochikdao/static/js/951.3adcceb4.chunk.js",
+    "static/js/507.6538a1ec.chunk.js": "/oochikdao/static/js/507.6538a1ec.chunk.js",
+    "static/js/107.a93b200a.chunk.js": "/oochikdao/static/js/107.a93b200a.chunk.js",
+    "static/js/927.832718a2.chunk.js": "/oochikdao/static/js/927.832718a2.chunk.js",
+    "static/js/16.c00b2c84.chunk.js": "/oochikdao/static/js/16.c00b2c84.chunk.js",
+    "static/js/129.1c44eac6.chunk.js": "/oochikdao/static/js/129.1c44eac6.chunk.js",
+    "static/media/0.gif": "/oochikdao/static/media/0.cedee0e8d0b197bc3433.gif",
+    "static/media/nodeBG.svg": "/oochikdao/static/media/nodeBG.a9e2dce66b0a7e067e9bfdaf118bba53.svg",
+    "static/media/oochik-banner.svg": "/oochikdao/static/media/oochik-banner.e70cabb2492aeb7190437fd62e1ba339.svg",
+    "static/media/discord.svg": "/oochikdao/static/media/discord.2281755e88e8787c775acf2d15b9faad.svg",
+    "static/media/discordHover.svg": "/oochikdao/static/media/discordHover.9de7b82bc1f7ffe2faae67346386a4b1.svg",
+    "static/media/backgroundCircles.svg": "/oochikdao/static/media/backgroundCircles.da441bc55e4b7967dff6ffe4c1c43e97.svg",
+    "static/media/wallet-2.svg": "/oochikdao/static/media/wallet-2.062986c123dd9c14968f78c6571af031.svg",
+    "static/media/instagram.svg": "/oochikdao/static/media/instagram.f1cb6296dba3d4a023abc1fbfbdfb7e0.svg",
+    "static/media/instagramHover.svg": "/oochikdao/static/media/instagramHover.56b012ecc7357b98e8e8f79db48590ae.svg",
+    "static/media/menu.svg": "/oochikdao/static/media/menu.20807e3a1c23648cc5bbcfe6124b629f.svg",
+    "index.html": "/oochikdao/index.html",
+    "static/media/twitter.svg": "/oochikdao/static/media/twitter.333e41ffabcc01a1fca6fbfe0e3622d4.svg",
+    "static/media/twitterHover.svg": "/oochikdao/static/media/twitterHover.f43209239a0c049b7b8f9db6f87af9a4.svg",
+    "static/media/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;": "/oochikdao/static/media/.1feff74faaf0efc6a044",
+    "main.879740c4.css.map": "/oochikdao/static/css/main.879740c4.css.map",
+    "main.f2bb4bcd.js.map": "/oochikdao/static/js/main.f2bb4bcd.js.map",
+    "951.3adcceb4.chunk.js.map": "/oochikdao/static/js/951.3adcceb4.chunk.js.map",
+    "107.a93b200a.chunk.js.map": "/oochikdao/static/js/107.a93b200a.chunk.js.map",
+    "927.832718a2.chunk.js.map": "/oochikdao/static/js/927.832718a2.chunk.js.map",
+    "16.c00b2c84.chunk.js.map": "/oochikdao/static/js/16.c00b2c84.chunk.js.map",
+    "129.1c44eac6.chunk.js.map": "/oochikdao/static/js/129.1c44eac6.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.879740c4.css",
+    "static/js/main.f2bb4bcd.js"
+  ]
+}
