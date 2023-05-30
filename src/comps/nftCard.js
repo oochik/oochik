@@ -1,6 +1,9 @@
 import styled from "@emotion/styled/macro";
 import giff from '../assets/0.gif'
-
+import { useEffect, useState } from "react";
+import { useMetaplex } from "../utils/useMetaplex";
+import { useWallet } from "@solana/wallet-adapter-react";
+import { PublicKey } from "@solana/web3.js";
 
 const OoChikGif = styled.div`
     background-image: url(${giff});
@@ -79,15 +82,111 @@ const DesktopCard = styled.div`
 `
 
 const NFTCard = () => {
+
+    /* ---------------------------------------------------------------------------------- */
+    /* ---------------------------------------------------------------------------------- */
+    /* ----------------------- CANDY MACHINE MINTING PROCESS ---------------------------- */
+    /* ---------------------------------------------------------------------------------- */
+    /* ---------------------------------------------------------------------------------- */
+
+
+    const { metaplex } = useMetaplex();
+    const wallet = useWallet();
+
+    const [nft, setNft] = useState(null);
+
+    const [disableMint, setDisableMint] = useState(true);
+    const [mintedItems, setMintedItems] = useState(true);
+    const [remItems, setRemItems] = useState(true);
+    const [totalItems, settotalItems] = useState(true);
+
+    const candyMachineAddress = new PublicKey(
+        process.env.REACT_APP_CANDY_MACHINE_ID
+    );
+    let candyMachine;
+    let walletBalance;
+
+    const addListener = async () => {
+
+        // add a listener to monitor changes to the user's wallet
+        metaplex.connection.onAccountChange(metaplex.identity().publicKey,
+        () => checkEligibility()
+        );
+
+    };
+
+    const checkEligibility = async () => {
+        //wallet not connected?
+        if (!wallet.connected) {
+        setDisableMint(true);
+        return;
+        }
+
+        // read candy machine state from chain
+        candyMachine = await metaplex
+        .candyMachines()
+        .findByAddress({ address: candyMachineAddress });
+        
+        setMintedItems(candyMachine.itemsMinted.toString(10))
+        setRemItems(candyMachine.itemsAvailable.toString(10))
+        settotalItems(candyMachine.items.length)
+
+
+        // enough items available?
+        if (    
+        candyMachine.itemsMinted.toString(10) -
+        candyMachine.itemsAvailable.toString(10) >
+        0
+        ) {
+        console.error("not enough items available");
+        setDisableMint(true);
+        return;
+        }
+
+        //good to go! Allow them to mint
+        setDisableMint(false);
+    };
+
+    // show and do nothing if no wallet is connected
+    if (!wallet.connected) {
+        return null;
+    }
+
+    // if it's the first time we are processing this function with a connected wallet we read the CM data and add Listeners
+    if (candyMachine === undefined) {
+        (async () => {
+        // read candy machine data to get the candy guards address
+        await checkEligibility();
+        // Add listeners to refresh CM data to reevaluate if minting is allowed after the candy guard updates or startDate is reached
+        addListener();
+        }
+        )();
+    }
+
+    const onClick = async () => {
+        // Here the actual mint happens. Depending on the guards that you are using you have to run some pre validation beforehand 
+        // Read more: https://docs.metaplex.com/programs/candy-machine/minting#minting-with-pre-validation
+        const { nft } = await metaplex.candyMachines().mint({
+        candyMachine,
+        collectionUpdateAuthority: candyMachine.authorityAddress,
+        });
+
+        setNft(nft);
+    };
+    
+    /* ----------------------------------------------------------------------------------------------------------------- */
+    /* ----------------------------------------------------------------------------------------------------------------- */
+    /* ----------------------------------------------------------------------------------------------------------------- */
+
     return (
         // <div className="col-6 col-sm-4 col-lg-3 d-flex justify-content-center align-items-center" >
         <DesktopCard >
             {/* <OoChikGif /> */}
             <div className="d-flex justify-content-between mb-1">
-                <span style={{ color: "white", fontWeight: 500 }}>#12543</span>
-                <span style={{ color: "white", fontWeight: 500 }}>12 <span style={{ fontWeight: 400 }}>SOL</span></span>
+                <span style={{ color: "white", fontWeight: 500 }}>{mintedItems}/{totalItems} Minted - {remItems} Available</span>
+                {/* <span style={{ color: "white", fontWeight: 500 }}>12 <span style={{ fontWeight: 400 }}>SOL</span></span> */}
             </div>
-            <MintButton>Mint</MintButton>
+            <MintButton onClick={onClick} disabled={disableMint}>Mint</MintButton>
         </DesktopCard>
         // </div>
     );

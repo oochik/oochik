@@ -46,16 +46,8 @@ color: #FFFFFF;
 const MintPage = () => {
     return (
         <div>
-            <Title>All NFTs</Title>
+            <Title>Mint One</Title>
             <MintingCardsWrapper>
-                <NFTCard />
-                <NFTCard />
-                <NFTCard />
-                <NFTCard />
-                <NFTCard />
-                <NFTCard />
-                <NFTCard />
-                <NFTCard />
                 <NFTCard />
             </MintingCardsWrapper>
         </div>

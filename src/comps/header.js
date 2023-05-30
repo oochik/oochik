@@ -94,7 +94,7 @@ const Header = () => {
                         OOCHIK DAO Minting 
                     </GradientTitle>
                 </div>
-                <Link to={'#'} style={{ color: 'inherit', textDecoration: "none", borderRadius: "48px", }}>
+                <Link to={'/mint'} style={{ color: 'inherit', textDecoration: "none", borderRadius: "48px", }}>
                     <GoToButton />
                 </Link>
             </div>
