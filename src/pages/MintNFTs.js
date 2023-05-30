@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { mintV2 } from "@metaplex-foundation/mpl-candy-machine";
 import {
@@ -18,21 +18,34 @@ import { publicKey } from "@metaplex-foundation/umi";
 
 
 
-export const MintNFTs = async ({ onClusterChange }) => {
+export const MintNFTs = ({ }) => {
 
   const wallet = useWallet();
   const [nft, setNft] = useState(null);
-  const [disableMint, setDisableMint] = useState(true);
+  const [disableMint, setDisableMint] = useState(false);
+  const [candyMachine, setCandyMachine] = useState(undefined)
+  const [candyGuard, setCandyGuard] = useState(undefined)
   let walletBalance;
-  
+  useEffect(() => {
+    const init = async () => {
+      setCandyMachine(await fetchCandyMachine(umi, candyMachinePublicKey))
+    }
+    init()
+  }, [])
+  useEffect(() => {
+    if (!candyMachine) return
+    console.log(candyMachine)
+    const init = async () => {
+      setCandyGuard(await fetchCandyGuard(umi, candyMachine.mintAuthority))
+    }
+    init()
+
+  }, [candyMachine])
   const umi = createUmi("https://api.devnet.solana.com").use(mplCandyMachine());
   const candyMachinePublicKey = publicKey(process.env.REACT_APP_CANDY_MACHINE_ID);
   const collectionNFTPublicKey = publicKey(process.env.REACT_APP_COLLECTION_MINT_ADDRESS);
-  const candyMachine = await fetchCandyMachine(umi, candyMachinePublicKey);
-  const candyGuard = await fetchCandyGuard(umi, candyMachine.mintAuthority);
-  
   let metaplex = candyMachine;
-  
+
 
   const addListener = async () => {
     // add a listener to monitor changes to the candy guard
@@ -56,15 +69,15 @@ export const MintNFTs = async ({ onClusterChange }) => {
 
 
     // enough items available?
-    if (
-      candyMachine.itemsMinted.toString(10) -
-      candyMachine.itemsAvailable.toString(10) >
-      0
-    ) {
-      console.error("not enough items available");
-      setDisableMint(true);
-      return;
-    }
+    // if (
+    //   candyMachine.itemsMinted.toString(10) -
+    //   candyMachine.itemsAvailable.toString(10) >
+    //   0
+    // ) {
+    //   console.error("not enough items available");
+    //   setDisableMint(true);
+    //   return;
+    // }
 
 
     //good to go! Allow them to mint
@@ -89,28 +102,24 @@ export const MintNFTs = async ({ onClusterChange }) => {
 
   const onClick = async () => {
     const nftMint = generateSigner(umi);
-    await transactionBuilder()
-      .add(setComputeUnitLimit(umi, { units: 800_000 }))
-      .add(
-        mintV2(umi, {
-          candyMachine: candyMachine.publicKey,
-          nftMint,
-          collectionMint: collectionNFTPublicKey.publicKey,
-          collectionUpdateAuthority: collectionNFTPublicKey.metadata.updateAuthority,
-        })
-      )
-      .sendAndConfirm(umi);
+    console.log(collectionNFTPublicKey.publicKey)
+    // await transactionBuilder()
+    //   .add(setComputeUnitLimit(umi, { units: 800_000 }))
+    //   .add(
+    //     mintV2(umi, {
+    //       candyMachine: candyMachine.publicKey,
+    //       nftMint,
+    //       collectionMint: collectionNFTPublicKey.publicKey,
+    //       // collectionUpdateAuthority: collectionNFTPublicKey.metadata.updateAuthority,
+    //     })
+    //   )
+    //   .sendAndConfirm(umi);
 
-    setNft(nft);
+    // setNft(nft);
   };
 
   return (
     <div>
-      <select onChange={onClusterChange}>
-        <option value="devnet">Devnet</option>
-        <option value="mainnet">Mainnet</option>
-        <option value="testnet">Testnet</option>
-      </select>
       <div>
         <div>
           <h1>NFT Mint Address</h1>
