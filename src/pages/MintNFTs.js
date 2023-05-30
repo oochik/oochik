@@ -1,21 +1,38 @@
-import { useMetaplex } from "../utils/useMetaplex";
 import { useState } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
-import { PublicKey } from "@solana/web3.js";
+import { mintV2 } from "@metaplex-foundation/mpl-candy-machine";
+import {
+  createMintWithAssociatedToken,
+  setComputeUnitLimit,
+} from "@metaplex-foundation/mpl-essentials";
+import { transactionBuilder, generateSigner } from "@metaplex-foundation/umi";
+import { createUmi } from "@metaplex-foundation/umi-bundle-defaults";
+import { mplCandyMachine } from "@metaplex-foundation/mpl-candy-machine";
+import {
+  fetchCandyMachine,
+  fetchCandyGuard,
+} from "@metaplex-foundation/mpl-candy-machine";
+import { publicKey } from "@metaplex-foundation/umi";
 
-export const MintNFTs = ({ onClusterChange }) => {
-  const { metaplex } = useMetaplex();
+
+
+
+
+export const MintNFTs = async ({ onClusterChange }) => {
+
   const wallet = useWallet();
-
   const [nft, setNft] = useState(null);
-
   const [disableMint, setDisableMint] = useState(true);
-
-  const candyMachineAddress = new PublicKey(
-    process.env.REACT_APP_CANDY_MACHINE_ID
-  );
-  let candyMachine;
   let walletBalance;
+  
+  const umi = createUmi("https://api.devnet.solana.com").use(mplCandyMachine());
+  const candyMachinePublicKey = publicKey(process.env.REACT_APP_CANDY_MACHINE_ID);
+  const collectionNFTPublicKey = publicKey(process.env.REACT_APP_COLLECTION_MINT_ADDRESS);
+  const candyMachine = await fetchCandyMachine(umi, candyMachinePublicKey);
+  const candyGuard = await fetchCandyGuard(umi, candyMachine.mintAuthority);
+  
+  let metaplex = candyMachine;
+  
 
   const addListener = async () => {
     // add a listener to monitor changes to the candy guard
@@ -37,10 +54,6 @@ export const MintNFTs = ({ onClusterChange }) => {
       return;
     }
 
-    // read candy machine state from chain
-    candyMachine = await metaplex
-      .candyMachines()
-      .findByAddress({ address: candyMachineAddress });
 
     // enough items available?
     if (
@@ -53,34 +66,6 @@ export const MintNFTs = ({ onClusterChange }) => {
       return;
     }
 
-    // guard checks have to be done for the relevant guard group! Example is for the default groups defined in Part 1 of the CM guide
-    const guard = candyMachine.candyGuard.guards;
-
-    // Calculate current time based on Solana BlockTime which the on chain program is using - startTime and endTime guards will need that
-    const slot = await metaplex.connection.getSlot();
-    const solanaTime = await metaplex.connection.getBlockTime(slot);
-
- 
-
-    if (guard.mintLimit != null) {
-      const mitLimitCounter = metaplex.candyMachines().pdas().mintLimitCounter({
-        id: guard.mintLimit.id,
-        user: metaplex.identity().publicKey,
-        candyMachine: candyMachine.address,
-        candyGuard: candyMachine.candyGuard.address,
-      });
-      //Read Data from chain
-      const mintedAmountBuffer = await metaplex.connection.getAccountInfo(mitLimitCounter, "processed");
-      let mintedAmount;
-      if (mintedAmountBuffer != null) {
-        mintedAmount = mintedAmountBuffer.data.readUintLE(0, 1);
-      }
-      if (mintedAmount != null && mintedAmount >= guard.mintLimit.limit) {
-        console.error("mintLimit: mintLimit reached!");
-        setDisableMint(true);
-        return;
-      }
-    }
 
     //good to go! Allow them to mint
     setDisableMint(false);
@@ -103,12 +88,18 @@ export const MintNFTs = ({ onClusterChange }) => {
   }
 
   const onClick = async () => {
-    // Here the actual mint happens. Depending on the guards that you are using you have to run some pre validation beforehand 
-    // Read more: https://docs.metaplex.com/programs/candy-machine/minting#minting-with-pre-validation
-    const { nft } = await metaplex.candyMachines().mint({
-      candyMachine,
-      collectionUpdateAuthority: candyMachine.authorityAddress,
-    });
+    const nftMint = generateSigner(umi);
+    await transactionBuilder()
+      .add(setComputeUnitLimit(umi, { units: 800_000 }))
+      .add(
+        mintV2(umi, {
+          candyMachine: candyMachine.publicKey,
+          nftMint,
+          collectionMint: collectionNFTPublicKey.publicKey,
+          collectionUpdateAuthority: collectionNFTPublicKey.metadata.updateAuthority,
+        })
+      )
+      .sendAndConfirm(umi);
 
     setNft(nft);
   };
