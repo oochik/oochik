@@ -24,41 +24,19 @@ export const MintNFTs = ({ }) => {
   const [nft, setNft] = useState(null);
   const [disableMint, setDisableMint] = useState(false);
   const [candyMachine, setCandyMachine] = useState(undefined)
-  const [candyGuard, setCandyGuard] = useState(undefined)
   let walletBalance;
+
+  
   useEffect(() => {
     const init = async () => {
       setCandyMachine(await fetchCandyMachine(umi, candyMachinePublicKey))
     }
     init()
   }, [])
-  useEffect(() => {
-    if (!candyMachine) return
-    console.log(candyMachine)
-    const init = async () => {
-      setCandyGuard(await fetchCandyGuard(umi, candyMachine.mintAuthority))
-    }
-    init()
 
-  }, [candyMachine])
   const umi = createUmi("https://api.devnet.solana.com").use(mplCandyMachine());
   const candyMachinePublicKey = publicKey(process.env.REACT_APP_CANDY_MACHINE_ID);
   const collectionNFTPublicKey = publicKey(process.env.REACT_APP_COLLECTION_MINT_ADDRESS);
-  let metaplex = candyMachine;
-
-
-  const addListener = async () => {
-    // add a listener to monitor changes to the candy guard
-    metaplex.connection.onAccountChange(candyMachine.candyGuard.address,
-      () => checkEligibility()
-    );
-
-    // add a listener to monitor changes to the user's wallet
-    metaplex.connection.onAccountChange(metaplex.identity().publicKey,
-      () => checkEligibility()
-    );
-
-  };
 
   const checkEligibility = async () => {
     //wallet not connected?
@@ -68,10 +46,10 @@ export const MintNFTs = ({ }) => {
     }
 
 
-    // enough items available?
+      // enough items available?
     // if (
-    //   candyMachine.itemsMinted.toString(10) -
-    //   candyMachine.itemsAvailable.toString(10) >
+    //   candyMachine.data.itemsRedeemed.toString(10) -
+    //   candyMachine.data.itemsAvailable.toString(10) >
     //   0
     // ) {
     //   console.error("not enough items available");
@@ -95,27 +73,27 @@ export const MintNFTs = ({ }) => {
       // read candy machine data to get the candy guards address
       await checkEligibility();
       // Add listeners to refresh CM data to reevaluate if minting is allowed after the candy guard updates or startDate is reached
-      addListener();
     }
     )();
   }
 
   const onClick = async () => {
     const nftMint = generateSigner(umi);
-    console.log(collectionNFTPublicKey.publicKey)
-    // await transactionBuilder()
-    //   .add(setComputeUnitLimit(umi, { units: 800_000 }))
-    //   .add(
-    //     mintV2(umi, {
-    //       candyMachine: candyMachine.publicKey,
-    //       nftMint,
-    //       collectionMint: collectionNFTPublicKey.publicKey,
-    //       // collectionUpdateAuthority: collectionNFTPublicKey.metadata.updateAuthority,
-    //     })
-    //   )
-    //   .sendAndConfirm(umi);
+    console.log(collectionNFTPublicKey)
+    console.log(wallet)
+    await transactionBuilder()
+      .add(setComputeUnitLimit(umi, { units: 800_000 }))
+      .add(
+        mintV2(umi, {
+          candyMachine: candyMachine.publicKey,
+          wallet,
+          // collectionMint: collectionNFTPublicKey.publicKey,
+          // collectionUpdateAuthority: collectionNFTPublicKey.metadata.updateAuthority,
+        })
+      )
+      .sendAndConfirm(umi);
 
-    // setNft(nft);
+    setNft(nft);
   };
 
   return (
