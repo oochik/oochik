@@ -2,7 +2,8 @@
 
 
 **IMPORTANT**
-remember to create collection using sugar v 2.0.0
+remember to create collection using sugar v 1.1.0
+remember to create candy machine v2
 
 
 ```bash
