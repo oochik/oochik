@@ -1,5 +1,10 @@
 # oochik-front
 
+
+**IMPORTANT**
+remember to create collection using sugar v 2.0.0
+
+
 ```bash
 # 10 % goes to DPkCBti5AvyQ5W7GL4vCFPVUMtjPNL81vrDgvR5ouSgL
 #------------------------------------------------------------

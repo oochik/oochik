@@ -1,5 +1,4 @@
 {
-  "tokenStandard": "nft",
   "number": 3,
   "symbol": "MONK",
   "sellerFeeBasisPoints": 1000,
@@ -7,12 +6,11 @@
   "isSequential": true,
   "creators": [
     {
-      "address": "DPkCBti5AvyQ5W7GL4vCFPVUMtjPNL81vrDgvR5ouSgL",
+      "address": "8SzHrPVkDf5xhmjyUJ7W8vDaxhTiGF9XBT9XX2PtiwYF",
       "share": 100
     }
   ],
   "uploadMethod": "nft_storage",
-  "ruleSet": null,
   "awsConfig": null,
   "nftStorageAuthToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDdCZThmRUI5MmJkQ2MzODU0ZDVjRmVEYzhkNTJEODNFYTNFYkE1ZTUiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY4NTExNjc1MTMyOSwibmFtZSI6Im9vY2hpayJ9.bFy7mV4qEnVNy09Co8xnjN8BqR5pAtqniXnsX6efPkM",
   "shdwStorageAccount": null,

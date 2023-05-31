@@ -185,8 +185,12 @@ const NFTCard = () => {
             .candyMachines()
             .findByAddress({ address: candyMachineAddress });
 
+
+        console.log(candyMachine)
+
+
         setMintedItems(candyMachine.itemsMinted.toString(10))
-        setRemItems(candyMachine.itemsAvailable.toString(10))
+        setRemItems(candyMachine.itemsAvailable.toString(10) - candyMachine.itemsMinted.toString(10))
         settotalItems(candyMachine.items.length)
 
 
@@ -226,10 +230,11 @@ const NFTCard = () => {
         // Read more: https://docs.metaplex.com/programs/candy-machine/minting#minting-with-pre-validation
         if (!candyMachine) return
         if (!candyMachine.authorityAddress) return
-        const { nft } = await metaplex.candyMachines().mint({
+        const { nft } = await metaplex.candyMachines().mint({ 
             candyMachine,
-            collectionUpdateAuthority: candyMachine.authorityAddress,
-        });
+            collectionUpdateAuthority: candyMachine.authorityAddress
+        },
+        );
         setNft(nft);
     };
 
