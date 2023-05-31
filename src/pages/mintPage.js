@@ -5,33 +5,39 @@ import { Box } from "@mui/material";
 
 const MintingCardsWrapper = styled.div`
 padding:30px;
+// height:calc(100vh-100px);
 height:100vh;
-overflow-y:scroll;
-scrollbar-width: 0px;
-display: grid;
-grid-template-columns: auto auto auto auto;
-grid-gap: 20px;
-grid-column-gap: 20px;
-grid-row-gap: 70px;
-&::-webkit-scrollbar {
-    display:none;
-}
-&::-webkit-scrollbar-thumb {
-    display:none;
-}
-&::-webkit-scrollbar-button{
-    display:none;
-}
- -ms-overflow-style: none;
- @media screen and (max-width: 990px) {
-    grid-template-columns: auto auto auto;
-    grid-row-gap: 40px;
-};
- @media screen and (max-width: 575px) {
-    grid-template-columns: auto auto;
-    grid-row-gap: 20px;
+display:flex;
+justify-content:center;
+// align-items:center;
 
-}    
+
+// the grid display css for showing more than one nft ----->
+// overflow-y:scroll;
+// scrollbar-width: 0px;
+// display: grid;
+// grid-template-columns: auto auto auto auto;
+// grid-gap: 20px;
+// grid-column-gap: 20px;
+// grid-row-gap: 70px;
+// &::-webkit-scrollbar {
+//     display:none;
+// }
+// &::-webkit-scrollbar-thumb {
+//     display:none;
+// }
+// &::-webkit-scrollbar-button{
+//     display:none;
+// }
+//  -ms-overflow-style: none;
+//  @media screen and (max-width: 990px) {
+//     grid-template-columns: auto auto auto;
+//     grid-row-gap: 40px;
+// };
+//  @media screen and (max-width: 575px) {
+//     grid-template-columns: auto auto;
+//     grid-row-gap: 20px
+// }    
 `
 const Title = styled.h4`
 margin-left:30px;

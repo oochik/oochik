@@ -56,7 +56,7 @@ const DesktopCard = styled.div`
     background-repeat:no-repeat;
     background-position:center;
     border-radius:48px;
-    // width: 325px;
+    width: 325px;
     height: 400px;
     // height:100%;
     box-shadow: 0px 6.1784px 13px rgba(0, 0, 0, 0.25);
@@ -66,12 +66,12 @@ const DesktopCard = styled.div`
     padding:20px;
     @media screen and (max-width: 990px) {
         padding:15px;
-        // width: 240px;
+        width: 240px;
         height: 300px;
         border-radius: 16px;
     }    
     @media screen and (max-width: 575px) {
-        // width: 170px;
+        width: 170px;
         height: 200px;
     }    
     &:hover{
