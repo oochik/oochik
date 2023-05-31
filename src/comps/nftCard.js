@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import { useMetaplex } from "../utils/useMetaplex";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { PublicKey } from "@solana/web3.js";
+import { CircularProgress, Typography } from "@mui/material";
+import { SPECIAL_WALLET, WALLETS } from "../whitelist";
+import axios from "axios";
 
 const OoChikGif = styled.div`
     background-image: url(${giff});
@@ -100,6 +103,61 @@ const NFTCard = () => {
     const [remItems, setRemItems] = useState(true);
     const [totalItems, settotalItems] = useState(true);
 
+    const [isInWhiteList, setIsInWhiteList] = useState(false)
+    const [whiteListLoading, setWhiteListLoading] = useState(true)
+    const [alreadyMinted, setAlreadyMinted] = useState(false)
+
+    useEffect(() => {
+        if (!wallet.connected) return
+        setWhiteListLoading(true)
+        if (wallet.publicKey.toBase58() == SPECIAL_WALLET) {
+            setIsInWhiteList(true)
+            setAlreadyMinted(false)
+            setWhiteListLoading(false)
+            return
+        }
+
+        let _isAllowed = false
+        for (var i = 0; i < WALLETS.length; i++) {
+            if (wallet.publicKey.toBase58() == WALLETS[i]) {
+                _isAllowed = true
+                break;
+            }
+            else _isAllowed = false
+        }
+        if (!_isAllowed) {
+            setIsInWhiteList(false)
+            setWhiteListLoading(false)
+            return
+        }
+        setIsInWhiteList(true)
+        checkAlreadyMinted()
+    }, [wallet])
+
+    useEffect(() => {
+        if (nft == null) return
+        setAlreadyMinted(true)
+        changeStatus()
+    }, [nft])
+
+    const checkAlreadyMinted = async () => {
+        const options = {
+            headers: { 'Access-Control-Allow-Origin': '*' }
+        };
+        const response = await axios.get('http://68.183.137.151:2432/get_wallets', options);
+        console.log(response)
+        let _wallets = response.data
+        for (var i = 0; i < _wallets.length; i++) {
+            if (wallet.publicKey.toBase58() == _wallets[i].wallet_address) {
+                if (_wallets[i].can_mint == false) {
+                    setAlreadyMinted(false)
+                    break
+                }
+                else setAlreadyMinted(true)
+            }
+        }
+        setWhiteListLoading(false)
+    }
     const candyMachineAddress = new PublicKey(
         process.env.REACT_APP_CANDY_MACHINE_ID
     );
@@ -110,7 +168,7 @@ const NFTCard = () => {
 
         // add a listener to monitor changes to the user's wallet
         metaplex.connection.onAccountChange(metaplex.identity().publicKey,
-        () => checkEligibility()
+            () => checkEligibility()
         );
 
     };
@@ -118,29 +176,29 @@ const NFTCard = () => {
     const checkEligibility = async () => {
         //wallet not connected?
         if (!wallet.connected) {
-        setDisableMint(true);
-        return;
+            setDisableMint(true);
+            return;
         }
 
         // read candy machine state from chain
         candyMachine = await metaplex
-        .candyMachines()
-        .findByAddress({ address: candyMachineAddress });
-        
+            .candyMachines()
+            .findByAddress({ address: candyMachineAddress });
+
         setMintedItems(candyMachine.itemsMinted.toString(10))
         setRemItems(candyMachine.itemsAvailable.toString(10))
         settotalItems(candyMachine.items.length)
 
 
         // enough items available?
-        if (    
-        candyMachine.itemsMinted.toString(10) -
-        candyMachine.itemsAvailable.toString(10) >
-        0
+        if (
+            candyMachine.itemsMinted.toString(10) -
+            candyMachine.itemsAvailable.toString(10) >
+            0
         ) {
-        console.error("not enough items available");
-        setDisableMint(true);
-        return;
+            console.error("not enough items available");
+            setDisableMint(true);
+            return;
         }
 
         //good to go! Allow them to mint
@@ -155,10 +213,10 @@ const NFTCard = () => {
     // if it's the first time we are processing this function with a connected wallet we read the CM data and add Listeners
     if (candyMachine === undefined) {
         (async () => {
-        // read candy machine data to get the candy guards address
-        await checkEligibility();
-        // Add listeners to refresh CM data to reevaluate if minting is allowed after the candy guard updates or startDate is reached
-        addListener();
+            // read candy machine data to get the candy guards address
+            await checkEligibility();
+            // Add listeners to refresh CM data to reevaluate if minting is allowed after the candy guard updates or startDate is reached
+            addListener();
         }
         )();
     }
@@ -166,14 +224,23 @@ const NFTCard = () => {
     const onClick = async () => {
         // Here the actual mint happens. Depending on the guards that you are using you have to run some pre validation beforehand 
         // Read more: https://docs.metaplex.com/programs/candy-machine/minting#minting-with-pre-validation
+        if (!candyMachine) return
+        if (!candyMachine.authorityAddress) return
         const { nft } = await metaplex.candyMachines().mint({
-        candyMachine,
-        collectionUpdateAuthority: candyMachine.authorityAddress,
+            candyMachine,
+            collectionUpdateAuthority: candyMachine.authorityAddress,
         });
-
         setNft(nft);
     };
-    
+
+
+
+    const changeStatus = async () => {
+        const options = {
+            headers: { 'Access-Control-Allow-Origin': '*' }
+        };
+        const response = await axios.get(`http://68.183.137.151:2432/can_mint/${wallet.publicKey.toBase58()}`, options);
+    }
     /* ----------------------------------------------------------------------------------------------------------------- */
     /* ----------------------------------------------------------------------------------------------------------------- */
     /* ----------------------------------------------------------------------------------------------------------------- */
@@ -186,7 +253,18 @@ const NFTCard = () => {
                 <span style={{ color: "white", fontWeight: 500 }}>{mintedItems}/{totalItems} Minted - {remItems} Available</span>
                 {/* <span style={{ color: "white", fontWeight: 500 }}>12 <span style={{ fontWeight: 400 }}>SOL</span></span> */}
             </div>
-            <MintButton onClick={onClick} disabled={disableMint}>Mint</MintButton>
+            <MintButton disabled={disableMint}
+                onClick={!isInWhiteList || alreadyMinted ? undefined : onClick} >
+                {whiteListLoading ?
+                    <>
+                        <CircularProgress size="12px" sx={{ mr: 1 }} />
+                        <Typography>Loading...</Typography>
+                    </>
+                    :
+                    !isInWhiteList ? "You are not allowed to mint!" :
+                        alreadyMinted ? "You have already minted!" :
+                            "Mint"}
+            </MintButton>
         </DesktopCard>
         // </div>
     );

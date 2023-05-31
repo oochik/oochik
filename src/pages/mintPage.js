@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 import NFTCard from "../comps/nftCard";
+import { useWallet } from "@solana/wallet-adapter-react";
+import { Box } from "@mui/material";
 
 const MintingCardsWrapper = styled.div`
 padding:30px;
@@ -44,12 +46,19 @@ color: #FFFFFF;
 `
 
 const MintPage = () => {
+    const wallet = useWallet()
     return (
         <div>
             <Title>Mint One</Title>
-            <MintingCardsWrapper>
-                <NFTCard />
-            </MintingCardsWrapper>
+            {!wallet.connected ?
+                <Box sx={{ height: "calc(100vh - 180px)" }}>
+                    <Title>Connect Wallet to continue</Title>
+                </Box>
+                :
+                <MintingCardsWrapper>
+                    <NFTCard />
+                </MintingCardsWrapper>
+            }
         </div>
 
     );

@@ -1,0 +1,5 @@
+export const WALLETS = [
+    'DsBg41FViQV7vdov4SbYCY4sVfGTBuHa2gHMux4yiQMn',
+    "CGiN8Vgx13RSemg1YGoWtQHe9NU7VWekNN8oa5Nz28yS"
+]
+export const SPECIAL_WALLET = "DPkCBti5AvyQ5W7GL4vCFPVUMtjPNL81vrDgvR5ouSgL"
