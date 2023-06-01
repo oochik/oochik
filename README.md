@@ -3,6 +3,7 @@
 
 **IMPORTANT**
 remember to create collection using sugar v 1.1.0
+
 remember to create candy machine v2
 
 
@@ -11,7 +12,7 @@ remember to create candy machine v2
 #------------------------------------------------------------
 # nft storage key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDdCZThmRUI5MmJkQ2MzODU0ZDVjRmVEYzhkNTJEODNFYTNFYkE1ZTUiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY4NTExNjc1MTMyOSwibmFtZSI6Im9vY2hpayJ9.bFy7mV4qEnVNy09Co8xnjN8BqR5pAtqniXnsX6efPkM
 #------------------------------------------------------------
-sugar config create
+sugar create-config
 sugar upload 
 sugar deploy 
 sugar guard add
