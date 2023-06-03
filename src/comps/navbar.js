@@ -68,7 +68,7 @@ const Navbar = ({ connectButton }) => {
             <div className=" d-none d-lg-flex align-items-center justify-content-between" style={{
                 zIndex: 88, backdropFilter: ' blur(30px)', position: 'sticky', top: '0', backgroundColor: 'rgba(25,36,27,0.0)', height: "100px",
                 // marginBottom: '100px',
-                padding: '0 40px '
+                padding: '0 40px'
             }}>
                 <div className="d-flex align-items-center col-6">
                     <Link to={'/'} className="me-5" style={{ fontSize: '20px', color: '#d1d1d1', textDecoration: "none" }}>

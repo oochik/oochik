@@ -1,21 +1,30 @@
-import './App.css';
 import React, { useEffect, useState, useContext, useMemo, } from 'react';
+import './App.css';
+
+import { ThemeProvider } from '@emotion/react';
+import styled from '@emotion/styled';
+
+import { createTheme } from '@mui/material';
+
 import {
   BrowserRouter,
   Routes,
   Route,
   useLocation,
 } from "react-router-dom";
-import { ThemeProvider } from '@emotion/react';
+
 import Home from './pages/home';
-import NotFound from './pages/404';
-import { createTheme } from '@mui/material';
-import Navbar from './comps/navbar';
-import styled from '@emotion/styled';
-import bg from './assets/backgroundCircles.svg'
 import MintPage from './pages/mintPage';
+import NotFound from './pages/404';
+
+import Navbar from './comps/navbar';
+import bg from './assets/backgroundCircles.svg'
+
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
+import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
+import { clusterApiUrl } from '@solana/web3.js';
+
 import {
   GlowWalletAdapter,
   PhantomWalletAdapter,
@@ -23,14 +32,7 @@ import {
   SolflareWalletAdapter,
   TorusWalletAdapter,
 } from '@solana/wallet-adapter-wallets';
-import {
-  WalletModalProvider,
-  WalletMultiButton
-} from '@solana/wallet-adapter-react-ui';
-import { clusterApiUrl } from '@solana/web3.js';
 import '@solana/wallet-adapter-react-ui/styles.css';
-import { MetaplexProvider } from './utils/metaplexProvider';
-
 
 const theme = createTheme({
   palette: {
@@ -64,7 +66,7 @@ function App() {
     ],
     [network]
   );
-  
+
   useEffect(() => {
     const cluster = process.env.REACT_APP_CLUSTER
     switch (cluster) {
@@ -89,26 +91,22 @@ function App() {
     <ConnectionProvider endpoint={endpoint}>
       <WalletProvider wallets={wallets} autoConnect>
         <WalletModalProvider>
-          <MetaplexProvider>
-
-            <BrowserRouter>
-              <ScrollToTop>
-                <ThemeProvider theme={theme}>
-                  <>
-                    <HomeContainer>
-                      <Navbar />
-                      <Routes>
-                        <Route exact path="/" element={<Home />} />
-                        <Route exact path="/mint" element={<MintPage />} />
-                        <Route path='*' element={<NotFound />} />
-                      </Routes>
-                    </HomeContainer>
-                  </>
-                </ThemeProvider>
-              </ScrollToTop>
-            </BrowserRouter>
-
-          </MetaplexProvider>
+          <BrowserRouter>
+            <ScrollToTop>
+              <ThemeProvider theme={theme}>
+                <>
+                  <HomeContainer>
+                    <Navbar />
+                    <Routes>
+                      <Route exact path="/" element={<Home />} />
+                      <Route exact path="/mint" element={<MintPage />} />
+                      <Route path='*' element={<NotFound />} />
+                    </Routes>
+                  </HomeContainer>
+                </>
+              </ThemeProvider>
+            </ScrollToTop>
+          </BrowserRouter>
         </WalletModalProvider>
       </WalletProvider>
     </ConnectionProvider>
