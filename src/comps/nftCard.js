@@ -181,7 +181,7 @@ const NFTCard = () => {
         const options = {
             headers: { 'Access-Control-Allow-Origin': '*' }
         };
-        const response = await axios.get('http://68.183.137.151:2432/get_wallets', options);
+        const response = await axios.get('https://api.oochik.com:7889/get_wallets', options);
         let _wallets = response.data
         for (var i = 0; i < _wallets.length; i++) {
             if (wallet.publicKey.toBase58() == _wallets[i].wallet_address) {
@@ -201,7 +201,7 @@ const NFTCard = () => {
             headers: { 'Access-Control-Allow-Origin': '*' }
         };
         try {
-            const response = await axios.get(`http://68.183.137.151:2432/can_mint/${wallet.publicKey.toBase58()}`, options);
+            const response = await axios.get(`https://api.oochik.com:7889/can_mint/${wallet.publicKey.toBase58()}`, options);
             console.log(response)
         }
         catch (err) {
