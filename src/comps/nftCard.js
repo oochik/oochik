@@ -7,7 +7,10 @@ import { CircularProgress, Typography } from "@mui/material";
 import { SPECIAL_WALLET, WALLETS } from "../whitelist";
 import axios from "axios";
 import { PublicKey } from "@solana/web3.js";
-const CANDY_MACHINE_ADDRESS = new PublicKey("7QJnV7QAuQjjxBFgmssEdEJD6DwhcEcCCocYCcyyEcUA")
+import toast from 'react-hot-toast';
+
+const CANDY_MACHINE_ADDRESS = new PublicKey("BBnpVhS3LjULFz4WoUoVnrztbQ4MbKoCLxXvh7e1EGnV")
+
 
 const OoChikGif = styled.div`
     background-image: url(${giff});
@@ -64,7 +67,7 @@ const NFTCard = () => {
     background-repeat:no-repeat;
     background-position:center;
     border-radius:48px;
-    // width: 325px;
+    width: 325px;
     height: 400px;
     // height:100%;
     box-shadow: 0px 6.1784px 13px rgba(0, 0, 0, 0.25);
@@ -98,9 +101,9 @@ const NFTCard = () => {
     const [isInWhiteList, setIsInWhiteList] = useState(false)
     const [whiteListLoading, setWhiteListLoading] = useState(true)
     const [alreadyMinted, setAlreadyMinted] = useState(false)
-
+    const [canMint, setCanMint] = useState(false)
     const metaplex = Metaplex.make(connection).use(walletAdapterIdentity(wallet))
-
+    const [noItem, setNoItem] = useState(false)
     const candyMachines = metaplex.candyMachinesV2()
 
     async function fetchCandyMachine() {
@@ -110,11 +113,10 @@ const NFTCard = () => {
     }
 
     async function mintOne() {
-        console.log("alive?")
         try {
             setIsMinting(true);
             const mintOutput = await candyMachines.mint({ candyMachine });
-            
+
             setIsMinting(false);
             setNft(mintOutput.nft)
             console.log("Minted one!", mintOutput)
@@ -122,19 +124,24 @@ const NFTCard = () => {
             await fetchCandyMachine()
         }
         catch (err) {
-            console.log("alive?")
-            console.log(err)
+            toast.error(`${err.message}`)
+            setIsMinting(false)
         }
     }
-
-    const canMint =
-        candyMachine &&
-        candyMachine.itemsRemaining.toNumber() > 0 &&
-        wallet.publicKey &&
-        !isMinting
-
-
-
+    useEffect(() => {
+        if (!candyMachine) return
+        if (!wallet) return
+        if (!wallet.publicKey) return
+        if (isMinting) {
+            setCanMint(false)
+            return
+        }
+        if (candyMachine.itemsRemaining.toNumber() <= 0) {
+            setNoItem(true)
+            return
+        }
+        setCanMint(true)
+    }, [isMinting, candyMachine, wallet])
 
     useEffect(() => {
         if (!wallet.connected) return
@@ -165,6 +172,7 @@ const NFTCard = () => {
 
     useEffect(() => {
         if (nft == null) return
+        toast.success('Successfully Minted!');
         setAlreadyMinted(true)
         changeStatus()
     }, [nft])
@@ -192,8 +200,13 @@ const NFTCard = () => {
         const options = {
             headers: { 'Access-Control-Allow-Origin': '*' }
         };
-        const response = await axios.get(`http://68.183.137.151:2432/can_mint/${wallet.publicKey.toBase58()}`, options);
-        console.log(response)
+        try {
+            const response = await axios.get(`http://68.183.137.151:2432/can_mint/${wallet.publicKey.toBase58()}`, options);
+            console.log(response)
+        }
+        catch (err) {
+            console.log(err)
+        }
     }
     /* ----------------------------------------------------------------------------------------------------------------- */
     /* ----------------------------------------------------------------------------------------------------------------- */
@@ -203,25 +216,35 @@ const NFTCard = () => {
 
     return (
         // <div className="col-6 col-sm-4 col-lg-3 d-flex justify-content-center align-items-center" >
+
         <DesktopCard >
             {/* <OoChikGif /> */}
             <div className="d-flex justify-content-between mb-1">
                 {/* <span style={{ color: "white", fontWeight: 500 }}>12 <span style={{ fontWeight: 400 }}>SOL</span></span> */}
             </div>
-            <MintButton disabled={!canMint}
-                onClick={!isInWhiteList || alreadyMinted ? undefined : mintOne} >
-                {whiteListLoading ?
-                    <>
-                        <CircularProgress size="12px" sx={{ mr: 1 }} />
-                        <Typography>Loading...</Typography>
-                    </>
-                    :
-                    !isInWhiteList ? "You are not allowed to mint!" :
-                        alreadyMinted ? "You have already minted!" :
-                            "Mint"
-                }
-            </MintButton>
+            {noItem ?
+                <MintButton disabled={true}>
+                    All NFTs are minted.
+                </MintButton>
+                :
+                <MintButton disabled={!canMint}
+                    onClick={!isInWhiteList || alreadyMinted ? undefined : mintOne} >
+
+                    {whiteListLoading ?
+                        <>
+                            <CircularProgress size="12px" sx={{ mr: 1 }} />
+                            <Typography>Loading...</Typography>
+                        </>
+                        :
+                        !isInWhiteList ? "You are not allowed to mint!" :
+                            alreadyMinted ? "You have already minted!" :
+                                "Mint"
+                    }
+                </MintButton>
+            }
+
         </DesktopCard>
+
         // </div>
     );
 }

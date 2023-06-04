@@ -33,6 +33,7 @@ import {
   TorusWalletAdapter,
 } from '@solana/wallet-adapter-wallets';
 import '@solana/wallet-adapter-react-ui/styles.css';
+import { Toaster } from 'react-hot-toast';
 
 const theme = createTheme({
   palette: {
@@ -95,6 +96,7 @@ function App() {
             <ScrollToTop>
               <ThemeProvider theme={theme}>
                 <>
+                  <Toaster position="top-right"/>
                   <HomeContainer>
                     <Navbar />
                     <Routes>
