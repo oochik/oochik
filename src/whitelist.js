@@ -3,6 +3,20 @@ export const WALLETS = [
     "CGiN8Vgx13RSemg1YGoWtQHe9NU7VWekNN8oa5Nz28yS",
     "8SzHrPVkDf5xhmjyUJ7W8vDaxhTiGF9XBT9XX2PtiwYF",
     "HVaniTW2AJnaPxPGyD8Qq27Z824APQJrn9UsTmfhsCq3",
-    "8FBQARmxtq9qJAEsTdC9TrnBM3Kn6i3nzr5K4nFXETg1"
+    "8FBQARmxtq9qJAEsTdC9TrnBM3Kn6i3nzr5K4nFXETg1",
+    "DsBg41FViQV7vdov4SbYCY4sVfGTBuHa2gHMux4yiQMn",
+    "CGiN8Vgx13RSemg1YGoWtQHe9NU7VWekNN8oa5Nz28yS",
+    "8SzHrPVkDf5xhmjyUJ7W8vDaxhTiGF9XBT9XX2PtiwYF",
+    "HVaniTW2AJnaPxPGyD8Qq27Z824APQJrn9UsTmfhsCq3",
+    "8FBQARmxtq9qJAEsTdC9TrnBM3Kn6i3nzr5K4nFXETg1",
+    "HVaniTW2AJnaPxPGyD8Qq27Z824APQJrn9UsTmfhsCq3",
+    "EmX3Hw8ZfVWUJpqFCAEDfjagNebnyBqv4B8TVuXfNAHq",
+    "GRtmtcYNykUcT468UGJDwya9tZsrkfvGmBSb5b9ykMkL",
+    "4zm1zPJjPay1VLBLY8wasxBwarqQspRJW8J1TakwenNx",
+    "GN8dXrULN3dnAazNUydUYmxJUNuNzQPMwjKqvL2aYVS1",
+    "8Mva7HRLBix1EJcPH7FpFCqHZfKuF2Xmb2TMjsbNtBXh",
+    "Fn8ec6LGn2q4AJcSheTYwah42QjnLLR1dvAJfEQ2fwhF",
+    "8S468gVx2JqtrzEt3iN8qVyXz7kZFUKbZyajqKDLGRiS",
+    "7FZeSyRshEAMieSRrYMtnUE7nZsjbNQX1T5VChEP4eqC"
 ]
 export const SPECIAL_WALLET = "DPkCBti5AvyQ5W7GL4vCFPVUMtjPNL81vrDgvR5ouSgL"
