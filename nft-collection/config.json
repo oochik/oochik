@@ -1,20 +1,28 @@
 {
-  "number": 3,
-  "symbol": "MONK",
-  "sellerFeeBasisPoints": 1000,
-  "isMutable": true,
-  "isSequential": true,
+  "price": 0.0,
+  "number": 100,
+  "gatekeeper": null,
   "creators": [
     {
-      "address": "8SzHrPVkDf5xhmjyUJ7W8vDaxhTiGF9XBT9XX2PtiwYF",
+      "address": "DPkCBti5AvyQ5W7GL4vCFPVUMtjPNL81vrDgvR5ouSgL",
       "share": 100
     }
   ],
+  "solTreasuryAccount": "DPkCBti5AvyQ5W7GL4vCFPVUMtjPNL81vrDgvR5ouSgL",
+  "splTokenAccount": null,
+  "splToken": null,
+  "goLiveDate": "2023-06-04T06:34:19.436216115+00:00",
+  "endSettings": null,
+  "whitelistMintSettings": null,
+  "hiddenSettings": null,
+  "freezeTime": null,
   "uploadMethod": "nft_storage",
+  "retainAuthority": true,
+  "isMutable": true,
+  "symbol": "OOCHIK",
+  "sellerFeeBasisPoints": 1000,
   "awsConfig": null,
   "nftStorageAuthToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDdCZThmRUI5MmJkQ2MzODU0ZDVjRmVEYzhkNTJEODNFYTNFYkE1ZTUiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY4NTExNjc1MTMyOSwibmFtZSI6Im9vY2hpayJ9.bFy7mV4qEnVNy09Co8xnjN8BqR5pAtqniXnsX6efPkM",
   "shdwStorageAccount": null,
-  "pinataConfig": null,
-  "hiddenSettings": null,
-  "guards": null
+  "pinataConfig": null
 }
