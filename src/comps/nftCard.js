@@ -178,21 +178,26 @@ const NFTCard = () => {
     }, [nft])
 
     const checkAlreadyMinted = async () => {
-        const options = {
-            headers: { 'Access-Control-Allow-Origin': '*' }
-        };
-        const response = await axios.get('https://api.oochik.com:7889/get_wallets', options);
-        let _wallets = response.data
-        for (var i = 0; i < _wallets.length; i++) {
-            if (wallet.publicKey.toBase58() == _wallets[i].wallet_address) {
-                if (_wallets[i].can_mint == false) {
-                    setAlreadyMinted(false)
-                    break
+        try {
+            const options = {
+                headers: { 'Access-Control-Allow-Origin': '*' }
+            };
+            const response = await axios.get('https://api.oochik.com:7889/get_wallets', options);
+            let _wallets = response.data
+            for (var i = 0; i < _wallets.length; i++) {
+                if (wallet.publicKey.toBase58() == _wallets[i].wallet_address) {
+                    if (_wallets[i].can_mint == false) {
+                        setAlreadyMinted(false)
+                        break
+                    }
+                    else setAlreadyMinted(true)
                 }
-                else setAlreadyMinted(true)
             }
+            fetchCandyMachine()
         }
-        fetchCandyMachine()
+        catch (err) {
+            console.log(err)
+        }
     }
 
 
