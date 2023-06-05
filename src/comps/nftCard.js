@@ -116,10 +116,8 @@ const NFTCard = () => {
         try {
             setIsMinting(true);
             const mintOutput = await candyMachines.mint({ candyMachine });
-
             setIsMinting(false);
             setNft(mintOutput.nft)
-            console.log("Minted one!", mintOutput)
             // Fetch the candy machine to update the counts
             await fetchCandyMachine()
         }
@@ -182,11 +180,12 @@ const NFTCard = () => {
             const options = {
                 headers: { 'Access-Control-Allow-Origin': '*' }
             };
-            const response = await axios.get('https://api.oochik.com:7889/get_wallets', options);
+            const response = await axios.get('https://mint.oochik.com:7889/get_wallets', options);
+            console.log(response)
             let _wallets = response.data
             for (var i = 0; i < _wallets.length; i++) {
                 if (wallet.publicKey.toBase58() == _wallets[i].wallet_address) {
-                    if (_wallets[i].can_mint == false) {
+                    if (_wallets[i].can_mint.indexOf("false") != -1) {
                         setAlreadyMinted(false)
                         break
                     }
@@ -206,7 +205,7 @@ const NFTCard = () => {
             headers: { 'Access-Control-Allow-Origin': '*' }
         };
         try {
-            const response = await axios.get(`https://api.oochik.com:7889/can_mint/${wallet.publicKey.toBase58()}`, options);
+            const response = await axios.get(`https://mint.oochik.com:7889/can_mint/${wallet.publicKey.toBase58()}`, options);
             console.log(response)
         }
         catch (err) {
