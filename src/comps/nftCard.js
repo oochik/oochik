@@ -38,7 +38,7 @@ const MintButton = styled.button`
     color:white;
     font-weight:500;
     font-size:14px;
-    display:none;
+    display:flex;
     justify-content:center;
     align-items:center;
     &:hover {

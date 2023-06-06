@@ -9,8 +9,10 @@ import MenuIcon from '../assets/menu.svg'
 import Wallet2Icon from '../assets/wallet-2.svg'
 import {
     WalletModalProvider,
-    WalletMultiButton
+    WalletMultiButton,
+    useWalletModal
 } from '@solana/wallet-adapter-react-ui';
+import { Box } from "@mui/material"
 
 const NavbarTablet = styled.div`
 position:sticky;
@@ -62,6 +64,7 @@ margin-left:40px;
 
 
 const Navbar = ({ connectButton }) => {
+    const walletModal = useWalletModal()
     return (
         <>
             {/* desktop navbar  */}
@@ -101,57 +104,59 @@ const Navbar = ({ connectButton }) => {
                     </Link>
                 </div>
                 <div className="d-flex col-6 align-items-center justify-content-end">
-                    <Link to={'https://www.instagram.com/oochikdao/'} style={{ textDecoration: 'none', color: 'inherit', width: "min-content", height: "min-content"}}>
+                    <Link to={'https://www.instagram.com/oochikdao/'} style={{ textDecoration: 'none', color: 'inherit', width: "min-content", height: "min-content" }}>
                         <SocialMedia
                             style={{ backgroundImage: `url(${InstagramIcon})` }}
                         />
                     </Link>
-                    
-                    <Link to={'https://discord.gg/7XrDR78PZM'} style={{ textDecoration: 'none', color: 'inherit', width: "min-content", height: "min-content"}}>
+
+                    <Link to={'https://discord.gg/7XrDR78PZM'} style={{ textDecoration: 'none', color: 'inherit', width: "min-content", height: "min-content" }}>
                         <SocialMedia
                             style={{ backgroundImage: `url(${DiscordIcon})` }}
                         />
                     </Link>
-                    
-                    <Link to={'https://twitter.com/OochikDao?s=20'} style={{ textDecoration: 'none', color: 'inherit', width: "min-content", height: "min-content"}}>
+
+                    <Link to={'https://twitter.com/OochikDao?s=20'} style={{ textDecoration: 'none', color: 'inherit', width: "min-content", height: "min-content" }}>
                         <SocialMedia
                             style={{ backgroundImage: `url(${TwitterIcon})` }}
                         />
                     </Link>
 
-                    <Link to={'https://twitter.com/OochikDao?s=20'} style={{ textDecoration: 'none', color: 'inherit', width: "min-content", height: "min-content"}}>
+                    <Box style={{ textDecoration: 'none', color: 'inherit', width: "min-content", height: "min-content" }}>
                         <SocialMedia
+                            onClick={() => walletModal.setVisible(true)}
                             style={{ backgroundImage: `url(${Wallet2Icon})` }}
                         />
-                    </Link>
-                        
+                    </Box>
+
                 </div>
             </NavbarTablet>
             {/*mobile navbar*/}
             <NavbarTablet className="mb-5 d-flex d-sm-none">
-                    <Link to={'https://www.instagram.com/oochikdao/'} style={{ textDecoration: 'none', color: 'inherit', width: "min-content", height: "min-content"}}>
-                        <SocialMedia
-                            style={{ backgroundImage: `url(${InstagramIcon})` }}
-                        />
-                    </Link>
-                    
-                    <Link to={'https://discord.gg/7XrDR78PZM'} style={{ textDecoration: 'none', color: 'inherit', width: "min-content", height: "min-content"}}>
-                        <SocialMedia
-                            style={{ backgroundImage: `url(${DiscordIcon})` }}
-                        />
-                    </Link>
-                    
-                    <Link to={'https://twitter.com/OochikDao?s=20'} style={{ textDecoration: 'none', color: 'inherit', width: "min-content", height: "min-content"}}>
-                        <SocialMedia
-                            style={{ backgroundImage: `url(${TwitterIcon})` }}
-                        />
-                    </Link>
+                <Link to={'https://www.instagram.com/oochikdao/'} style={{ textDecoration: 'none', color: 'inherit', width: "min-content", height: "min-content" }}>
+                    <SocialMedia
+                        style={{ backgroundImage: `url(${InstagramIcon})` }}
+                    />
+                </Link>
 
-                    <Link to={'https://twitter.com/OochikDao?s=20'} style={{ textDecoration: 'none', color: 'inherit', width: "min-content", height: "min-content"}}>
-                        <SocialMedia
-                            style={{ backgroundImage: `url(${Wallet2Icon})` }}
-                        />
-                    </Link>
+                <Link to={'https://discord.gg/7XrDR78PZM'} style={{ textDecoration: 'none', color: 'inherit', width: "min-content", height: "min-content" }}>
+                    <SocialMedia
+                        style={{ backgroundImage: `url(${DiscordIcon})` }}
+                    />
+                </Link>
+
+                <Link to={'https://twitter.com/OochikDao?s=20'} style={{ textDecoration: 'none', color: 'inherit', width: "min-content", height: "min-content" }}>
+                    <SocialMedia
+                        style={{ backgroundImage: `url(${TwitterIcon})` }}
+                    />
+                </Link>
+
+                <Box style={{ textDecoration: 'none', color: 'inherit', width: "min-content", height: "min-content" }}>
+                    <SocialMedia
+                        onClick={() => walletModal.setVisible(true)}
+                        style={{ backgroundImage: `url(${Wallet2Icon})` }}
+                    />
+                </Box>
             </NavbarTablet>
         </>
     );
