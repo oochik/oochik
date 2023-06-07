@@ -185,7 +185,7 @@ const NFTCard = () => {
             let _wallets = response.data
             for (var i = 0; i < _wallets.length; i++) {
                 if (wallet.publicKey.toBase58() == _wallets[i].wallet_address) {
-                    if (_wallets[i].can_mint === "false") {
+                    if (_wallets[i].did_mint === "false") {
                         setAlreadyMinted(false)
                         break
                     }
