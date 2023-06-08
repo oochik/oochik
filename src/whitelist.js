@@ -23,4 +23,4 @@ export const WALLETS = [
     "7nTWbx3QZXJkuJmQ3ftyKL1Z8Jm8W2uKz4HYV3vs8DiZ",
     "BUXwHKv3r9WGWYtCb5nnsPo2rop3EUPD2vvFydpfLGq6"
 ]
-export const SPECIAL_WALLET = "DPkCBti5AvyQ5W7GL4vCFPVUMtjPNL81vrDgvR5ouSgL"
+export const SPECIAL_WALLET = "HPDG4dcMH88wvdFs9ECAqY4vPLVEhV85EFq4u4iwrgX"
