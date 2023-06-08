@@ -148,6 +148,7 @@ const NFTCard = () => {
             setIsInWhiteList(true)
             setAlreadyMinted(false)
             setWhiteListLoading(false)
+            checkAlreadyMinted()
             return
         }
 
@@ -171,25 +172,28 @@ const NFTCard = () => {
     useEffect(() => {
         if (nft == null) return
         toast.success('Successfully Minted!');
-        setAlreadyMinted(true)
-        changeStatus()
+        if (wallet.publicKey.toBase58() !== SPECIAL_WALLET) {
+            setAlreadyMinted(true)
+            changeStatus()
+        }
     }, [nft])
 
     const checkAlreadyMinted = async () => {
         try {
-            const options = {
-                headers: { 'Access-Control-Allow-Origin': '*' }
-            };
-            const response = await axios.get('https://mint.oochik.com:7889/get_wallets', options);
-            console.log(response)
-            let _wallets = response.data
-            for (var i = 0; i < _wallets.length; i++) {
-                if (wallet.publicKey.toBase58() == _wallets[i].wallet_address) {
-                    if (_wallets[i].did_mint === "false") {
-                        setAlreadyMinted(false)
-                        break
+            if (wallet.publicKey.toBase58() != SPECIAL_WALLET) {
+                const options = {
+                    headers: { 'Access-Control-Allow-Origin': '*' }
+                };
+                const response = await axios.get('https://mint.oochik.com:7889/get_wallets', options);
+                let _wallets = response.data
+                for (var i = 0; i < _wallets.length; i++) {
+                    if (wallet.publicKey.toBase58() == _wallets[i].wallet_address) {
+                        if (_wallets[i].did_mint === "false") {
+                            setAlreadyMinted(false)
+                            break
+                        }
+                        else setAlreadyMinted(true)
                     }
-                    else setAlreadyMinted(true)
                 }
             }
             fetchCandyMachine()
