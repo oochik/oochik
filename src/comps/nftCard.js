@@ -143,6 +143,13 @@ const NFTCard = () => {
 
     useEffect(() => {
         if (!wallet.connected) return
+        let pending = localStorage.getItem("pending", wallet.publicKey.toBase58())
+        if (pending) {
+            changeStatus()
+            setAlreadyMinted(true)
+            setWhiteListLoading(false)
+            return
+        }
         setWhiteListLoading(true)
         if (wallet.publicKey.toBase58() == SPECIAL_WALLET) {
             setIsInWhiteList(true)
@@ -171,11 +178,11 @@ const NFTCard = () => {
 
     useEffect(() => {
         if (nft == null) return
-        toast.success('Successfully Minted!');
         if (wallet.publicKey.toBase58() !== SPECIAL_WALLET) {
-            setAlreadyMinted(true)
+            localStorage.setItem("pending", wallet.publicKey.toBase58())
             changeStatus()
         }
+        else toast.success('Successfully Minted!');
     }, [nft])
 
     const checkAlreadyMinted = async () => {
@@ -186,6 +193,7 @@ const NFTCard = () => {
                 };
                 const response = await axios.get('https://mint.oochik.com:7889/get_wallets', options);
                 let _wallets = response.data
+                console.log(_wallets)
                 for (var i = 0; i < _wallets.length; i++) {
                     if (wallet.publicKey.toBase58() == _wallets[i].wallet_address) {
                         if (_wallets[i].did_mint === "false") {
@@ -210,10 +218,19 @@ const NFTCard = () => {
         };
         try {
             const response = await axios.get(`https://mint.oochik.com:7889/can_mint/${wallet.publicKey.toBase58()}`, options);
-            console.log(response)
+            if (!response.data) throw response
+            if (!response.data.message) throw response
+            if (!response.status) throw response
+            if (response.data.message == "Wallet flag updated to true") {
+                toast.success('Successfully Minted!');
+                localStorage.removeItem("pending")
+            }
+            if (wallet.publicKey.toBase58() !== SPECIAL_WALLET) {
+                setAlreadyMinted(true)
+            }
         }
         catch (err) {
-            console.log(err)
+            changeStatus()
         }
     }
     /* ----------------------------------------------------------------------------------------------------------------- */
