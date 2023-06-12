@@ -12,7 +12,7 @@ remember to create candy machine v2
 sudo npm install @solana/web3.js
 npm install @metaplex-foundation/js
 sudo npm install @solana/web3.js @solana/wallet-adapter-react @solana/wallet-adapter-react-ui @solana/wallet-adapter-base @solana/wallet-adapter-wallets --force
-# 10 % goes to DPkCBti5AvyQ5W7GL4vCFPVUMtjPNL81vrDgvR5ouSgL
+# 10 % goes to HPDG4dcMH88wvdFs9ECAqY4vPLVEhV85EFq4u4iwrgX
 #------------------------------------------------------------
 # nft storage key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDdCZThmRUI5MmJkQ2MzODU0ZDVjRmVEYzhkNTJEODNFYTNFYkE1ZTUiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY4NTExNjc1MTMyOSwibmFtZSI6Im9vY2hpayJ9.bFy7mV4qEnVNy09Co8xnjN8BqR5pAtqniXnsX6efPkM
 #------------------------------------------------------------
