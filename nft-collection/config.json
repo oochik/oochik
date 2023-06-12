@@ -4,14 +4,14 @@
   "gatekeeper": null,
   "creators": [
     {
-      "address": "DPkCBti5AvyQ5W7GL4vCFPVUMtjPNL81vrDgvR5ouSgL",
+      "address": "HPDG4dcMH88wvdFs9ECAqY4vPLVEhV85EFq4u4iwrgX",
       "share": 100
     }
   ],
-  "solTreasuryAccount": "DPkCBti5AvyQ5W7GL4vCFPVUMtjPNL81vrDgvR5ouSgL",
+  "solTreasuryAccount": "HPDG4dcMH88wvdFs9ECAqY4vPLVEhV85EFq4u4iwrgX",
   "splTokenAccount": null,
   "splToken": null,
-  "goLiveDate": "2023-06-04T06:34:19.436216115+00:00",
+  "goLiveDate": "2023-06-12T21:10:57.112048314+00:00",
   "endSettings": null,
   "whitelistMintSettings": null,
   "hiddenSettings": null,
