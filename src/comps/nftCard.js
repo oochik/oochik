@@ -9,7 +9,7 @@ import axios from "axios";
 import { PublicKey } from "@solana/web3.js";
 import toast from 'react-hot-toast';
 
-const CANDY_MACHINE_ADDRESS = new PublicKey("Exz2RzPXLhH9KJMmTCd1NNEjWRMbjAsZFxDpKebyWLEc")
+const CANDY_MACHINE_ADDRESS = new PublicKey("GYFKeScsHA4Wq1ksUMG7BtHMUjbXfSycFdoFpgdDL1Qy")
 
 
 const OoChikGif = styled.div`

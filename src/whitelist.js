@@ -21,6 +21,7 @@ export const WALLETS = [
     "FHZTba5FyQKCJ7edbGbuCbhrR6twpKuMNhcmMKoJZ48N",
     "7LYScf9GXg2jbwUurpBrGj3Fo8yL9Uwfx4t1NGtKhQiy",
     "7nTWbx3QZXJkuJmQ3ftyKL1Z8Jm8W2uKz4HYV3vs8DiZ",
-    "BUXwHKv3r9WGWYtCb5nnsPo2rop3EUPD2vvFydpfLGq6"
+    "BUXwHKv3r9WGWYtCb5nnsPo2rop3EUPD2vvFydpfLGq6",
+    "HPDG4dcMH88wvdFs9ECAqY4vPLVEhV85EFq4u4iwrgX"
 ]
-export const SPECIAL_WALLET = "HPDG4dcMH88wvdFs9ECAqY4vPLVEhV85EFq4u4iwrgX"
+export const SPECIAL_WALLET = "28cvztz56WAbM5k8bGm4RpcG5p2FfwszUMizNYCAdDhd"
