@@ -1,17 +1,17 @@
 {
   "price": 0.0,
-  "number": 100,
+  "number": 101,
   "gatekeeper": null,
   "creators": [
     {
-      "address": "HPDG4dcMH88wvdFs9ECAqY4vPLVEhV85EFq4u4iwrgX",
+      "address": "28cvztz56WAbM5k8bGm4RpcG5p2FfwszUMizNYCAdDhd",
       "share": 100
     }
   ],
-  "solTreasuryAccount": "HPDG4dcMH88wvdFs9ECAqY4vPLVEhV85EFq4u4iwrgX",
+  "solTreasuryAccount": "28cvztz56WAbM5k8bGm4RpcG5p2FfwszUMizNYCAdDhd",
   "splTokenAccount": null,
   "splToken": null,
-  "goLiveDate": "2023-06-12T21:10:57.112048314+00:00",
+  "goLiveDate": "2023-06-13T18:12:45.818363+00:00",
   "endSettings": null,
   "whitelistMintSettings": null,
   "hiddenSettings": null,
@@ -23,6 +23,5 @@
   "sellerFeeBasisPoints": 1000,
   "awsConfig": null,
   "nftStorageAuthToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDdCZThmRUI5MmJkQ2MzODU0ZDVjRmVEYzhkNTJEODNFYTNFYkE1ZTUiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY4NTExNjc1MTMyOSwibmFtZSI6Im9vY2hpayJ9.bFy7mV4qEnVNy09Co8xnjN8BqR5pAtqniXnsX6efPkM",
-  "shdwStorageAccount": null,
-  "pinataConfig": null
+  "shdwStorageAccount": null
 }

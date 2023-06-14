@@ -1,16 +1,15 @@
 {
-    "name": "Monkey 1",
-    "description": "Monk DAO Genesis Pass 1",
+    "name": "OOCHIK 1",
+    "description": "OOCHIK DAO Genesis Pass 1",
     "image": "1.gif",
-    "symbol": "MONK",
+    "symbol": "OOCHIK",
     "attributes": [],
     "properties": {
-      "files": [
-        {
-          "uri": "1.gif",
-          "type": "image/gif"
-        }
-      ]
+        "files": [
+            {
+                "uri": "1.gif",
+                "type": "image/gif"
+            }
+        ]
     }
-  }
-  
+}
