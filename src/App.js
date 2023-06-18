@@ -53,7 +53,7 @@ background-repeat:repeat-y;
 
 
 function App() {
-  const [network, setNetwork] = useState(WalletAdapterNetwork.Devnet);
+  const [network, setNetwork] = useState(WalletAdapterNetwork.Mainnet);
 
   const endpoint = useMemo(() => clusterApiUrl(network), [network]);
 
