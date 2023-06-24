@@ -15,7 +15,7 @@ const OoChikGif = styled.div`
         width:100px;
     }    
 `
-const MintButton = styled.button`
+const MintButton = styled.div`
     // background: linear-gradient(91.53deg, #507757 3.73%, #222F25 97.53%)  padding-box,linear-gradient(90deg,rgba(159, 200, 59, 1) 0%,rgba(159, 200, 59, 0) 100%)  border-box;
     background: linear-gradient(91.53deg, #507757 3.73%, #222F25 97.53%);
     // border: 1px solid transparent;
