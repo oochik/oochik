@@ -87,7 +87,7 @@ const NFTCard = () => {
                 <div id="mint-counter" />
                 {/* <span style={{ color: "white", fontWeight: 500 }}>12 <span style={{ fontWeight: 400 }}>SOL</span></span> */}
             </div>
-            <div id="mint-button-container" />
+            <MintButton id="mint-button-container">Mint</MintButton>
         </DesktopCard>
     );
 }
