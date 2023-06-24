@@ -1,15 +1,6 @@
 import styled from "@emotion/styled/macro";
 import giff from '../assets/0.gif'
-import { useEffect, useState } from "react";
-import { CandyMachineV2, Metaplex, walletAdapterIdentity } from "@metaplex-foundation/js";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
-import { CircularProgress, Typography } from "@mui/material";
-import { SPECIAL_WALLET, WALLETS } from "../whitelist";
-import axios from "axios";
-import { PublicKey } from "@solana/web3.js";
-import toast from 'react-hot-toast';
-
-const CANDY_MACHINE_ADDRESS = new PublicKey("GYFKeScsHA4Wq1ksUMG7BtHMUjbXfSycFdoFpgdDL1Qy")
 
 
 const OoChikGif = styled.div`
@@ -52,17 +43,9 @@ const MintButton = styled.button`
     }    
 
 `
-const NFTCard = () => {
-    /* ---------------------------------------------------------------------------------- */
-    /* ---------------------------------------------------------------------------------- */
-    /* ----------------------- CANDY MACHINE MINTING PROCESS ---------------------------- */
-    /* ---------------------------------------------------------------------------------- */
-    /* ---------------------------------------------------------------------------------- */
-    const [nft, setNft] = useState(null);
-
-    const DesktopCard = styled.div`
+const DesktopCard = styled.div`
     background: #202C22;
-    background-image: url(${nft ? nft.json.image : giff});
+    background-image: url(${giff});
     background-size:cover;
     background-repeat:no-repeat;
     background-position:center;
@@ -94,183 +77,18 @@ const NFTCard = () => {
 
 
 `
+const NFTCard = () => {
+
     const { connection } = useConnection();
     const wallet = useWallet();
-    const [candyMachine, setCandyMachine] = useState(undefined)
-    const [isMinting, setIsMinting] = useState(false)
-    const [isInWhiteList, setIsInWhiteList] = useState(false)
-    const [whiteListLoading, setWhiteListLoading] = useState(true)
-    const [alreadyMinted, setAlreadyMinted] = useState(false)
-    const [canMint, setCanMint] = useState(false)
-    const metaplex = Metaplex.make(connection).use(walletAdapterIdentity(wallet))
-    const [noItem, setNoItem] = useState(false)
-    const candyMachines = metaplex.candyMachinesV2()
-
-    async function fetchCandyMachine() {
-        const fetched = await candyMachines.findByAddress({ address: CANDY_MACHINE_ADDRESS })
-        setCandyMachine(fetched)
-        setWhiteListLoading(false)
-    }
-
-    async function mintOne() {
-        try {
-            setIsMinting(true);
-            const mintOutput = await candyMachines.mint({ candyMachine });
-            setIsMinting(false);
-            setNft(mintOutput.nft)
-            // Fetch the candy machine to update the counts
-            await fetchCandyMachine()
-        }
-        catch (err) {
-            toast.error(`${err.message}`)
-            setIsMinting(false)
-        }
-    }
-    useEffect(() => {
-        if (!candyMachine) return
-        if (!wallet) return
-        if (!wallet.publicKey) return
-        if (isMinting) {
-            setCanMint(false)
-            return
-        }
-        if (candyMachine.itemsRemaining.toNumber() <= 0) {
-            setNoItem(true)
-            return
-        }
-        setCanMint(true)
-    }, [isMinting, candyMachine, wallet])
-
-    useEffect(() => {
-        if (!wallet.connected) return
-        let pending = localStorage.getItem("pending", wallet.publicKey.toBase58())
-        if (pending) {
-            changeStatus()
-            setAlreadyMinted(true)
-            setWhiteListLoading(false)
-            return
-        }
-        setWhiteListLoading(true)
-        if (wallet.publicKey.toBase58() == SPECIAL_WALLET) {
-            setIsInWhiteList(true)
-            setAlreadyMinted(false)
-            setWhiteListLoading(false)
-            checkAlreadyMinted()
-            return
-        }
-
-        let _isAllowed = false
-        for (var i = 0; i < WALLETS.length; i++) {
-            if (wallet.publicKey.toBase58() == WALLETS[i]) {
-                _isAllowed = true
-                break;
-            }
-            else _isAllowed = false
-        }
-        if (!_isAllowed) {
-            setIsInWhiteList(false)
-            setWhiteListLoading(false)
-            return
-        }
-        setIsInWhiteList(true)
-        checkAlreadyMinted()
-    }, [wallet])
-
-    useEffect(() => {
-        if (nft == null) return
-        if (wallet.publicKey.toBase58() !== SPECIAL_WALLET) {
-            localStorage.setItem("pending", wallet.publicKey.toBase58())
-            changeStatus()
-        }
-        else toast.success('Successfully Minted!');
-    }, [nft])
-
-    const checkAlreadyMinted = async () => {
-        try {
-            if (wallet.publicKey.toBase58() != SPECIAL_WALLET) {
-                const options = {
-                    headers: { 'Access-Control-Allow-Origin': '*' }
-                };
-                const response = await axios.get('https://mint.oochik.com:7889/get_wallets', options);
-                let _wallets = response.data
-                console.log(_wallets)
-                for (var i = 0; i < _wallets.length; i++) {
-                    if (wallet.publicKey.toBase58() == _wallets[i].wallet_address) {
-                        if (_wallets[i].did_mint === "false") {
-                            setAlreadyMinted(false)
-                            break
-                        }
-                        else setAlreadyMinted(true)
-                    }
-                }
-            }
-            fetchCandyMachine()
-        }
-        catch (err) {
-            console.log(err)
-        }
-    }
-
-
-    const changeStatus = async () => {
-        const options = {
-            headers: { 'Access-Control-Allow-Origin': '*' }
-        };
-        try {
-            const response = await axios.get(`https://mint.oochik.com:7889/can_mint/${wallet.publicKey.toBase58()}`, options);
-            if (!response.data) throw response
-            if (!response.data.message) throw response
-            if (!response.status) throw response
-            if (response.data.message == "Wallet flag updated to true") {
-                toast.success('Successfully Minted!');
-                localStorage.removeItem("pending")
-            }
-            if (wallet.publicKey.toBase58() !== SPECIAL_WALLET) {
-                setAlreadyMinted(true)
-            }
-        }
-        catch (err) {
-            changeStatus()
-        }
-    }
-    /* ----------------------------------------------------------------------------------------------------------------- */
-    /* ----------------------------------------------------------------------------------------------------------------- */
-    /* ----------------------------------------------------------------------------------------------------------------- */
-
-
-
     return (
-        // <div className="col-6 col-sm-4 col-lg-3 d-flex justify-content-center align-items-center" >
-
         <DesktopCard >
-            {/* <OoChikGif /> */}
             <div className="d-flex justify-content-between mb-1">
+                <div id="mint-counter" />
                 {/* <span style={{ color: "white", fontWeight: 500 }}>12 <span style={{ fontWeight: 400 }}>SOL</span></span> */}
             </div>
-            {noItem ?
-                <MintButton disabled={true}>
-                    All NFTs are minted.
-                </MintButton>
-                :
-                <MintButton disabled={!canMint}
-                    onClick={!isInWhiteList || alreadyMinted ? undefined : mintOne} >
-
-                    {whiteListLoading ?
-                        <>
-                            <CircularProgress size="12px" sx={{ mr: 1 }} />
-                            <Typography>Loading...</Typography>
-                        </>
-                        :
-                        !isInWhiteList ? "You are not allowed to mint!" :
-                            alreadyMinted ? "You have already minted!" :
-                                "Mint"
-                    }
-                </MintButton>
-            }
-
+            <div id="mint-button-container" />
         </DesktopCard>
-
-        // </div>
     );
 }
 
